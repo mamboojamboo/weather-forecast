@@ -1,6 +1,6 @@
 import React from 'react';
 import { useValues, useActions } from 'kea';
-import appLogic from '../../logic/appLogic';
+import appLogic from '../../store/appLogic';
 
 
 import {
@@ -13,12 +13,14 @@ const TopBar = () => {
   const { weather, isLoading } = useValues(appLogic);
   const { updateWeatherAsync } = useActions(appLogic);
 
+  // TODO: check how much renders on page
+
   console.log(isLoading);
   console.log(weather);
 
 
   return (
-    <BarForm onSubmit={(event) => updateWeatherAsync(event)}>
+    <BarForm onSubmit={updateWeatherAsync}>
       <InputInBarForm
         type='text'
         name='inputCity'
@@ -33,7 +35,11 @@ const TopBar = () => {
         placeholder={!weather.error ? 'country' : 'enter country'}
         // defaultValue={weather.country}
       />
-      <ButtonInBarForm>Get weather</ButtonInBarForm>
+      <ButtonInBarForm
+        disabled={isLoading}
+      >
+        Get weather
+      </ButtonInBarForm>
     </BarForm>
   );
 };
