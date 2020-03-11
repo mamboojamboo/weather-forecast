@@ -1,8 +1,7 @@
 import React from 'react';
 import { useValues, useActions } from 'kea';
+
 import appLogic from '../../store/appLogic';
-
-
 import {
   BarForm,
   InputInBarForm,
@@ -13,12 +12,6 @@ const TopBar = () => {
   const { weather, isLoading } = useValues(appLogic);
   const { updateWeatherAsync } = useActions(appLogic);
 
-  // TODO: check how much renders on page
-
-  console.log(isLoading);
-  console.log(weather);
-
-
   return (
     <BarForm onSubmit={updateWeatherAsync}>
       <InputInBarForm
@@ -26,14 +19,14 @@ const TopBar = () => {
         name='inputCity'
         autoComplete='off'
         placeholder={!weather.error ? 'city' : 'enter city'}
-        // defaultValue={weather.city}
+        defaultValue={weather.city}
       />
       <InputInBarForm
         type='text'
         name='inputCountry'
         autoComplete='off'
         placeholder={!weather.error ? 'country' : 'enter country'}
-        // defaultValue={weather.country}
+        defaultValue={weather.country}
       />
       <ButtonInBarForm
         disabled={isLoading}
