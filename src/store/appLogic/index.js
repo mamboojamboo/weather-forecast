@@ -10,7 +10,7 @@ const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 const appLogic = kea({
   actions: () => ({
-    loadData: (data) => (data),
+    loadData: (boolean) => (boolean),
     updateWeather: (data) => (data)
   }),
 
@@ -66,11 +66,11 @@ const appLogic = kea({
             error: false
           };
           actions.updateWeather(answer);
-          actions.loadData(false);
         })
         .catch((err) => {
           console.log(err);
         });
+      actions.loadData(false);
     }
 
   })
