@@ -1,5 +1,5 @@
 import React from 'react';
-import { useValues } from 'kea';
+import { useValues, useActions } from 'kea';
 
 import MainPageWrapper from './units';
 import SearchBar from '../../components/SearchBar';
@@ -9,11 +9,13 @@ import appLogic from '../../store/appLogic';
 
 const MainPage = () => {
   const { weather, isLoading } = useValues(appLogic);
+  const { updateWeatherAsync } = useActions(appLogic);
   return (
     <MainPageWrapper>
-        <SearchBar/>
+        <SearchBar {...{ weather, isLoading, updateWeatherAsync }}/>
         <WeatherCard {...{ weather, isLoading }} />
     </MainPageWrapper>
   );
 };
+
 export default MainPage;

@@ -1,18 +1,12 @@
 import React from 'react';
-import { useValues, useActions } from 'kea';
 
-import appLogic from '../../store/appLogic';
 import {
   BarForm,
   InputInBarForm,
   ButtonInBarForm
 } from './units';
 
-const TopBar = () => {
-  const { weather, isLoading } = useValues(appLogic);
-  const { updateWeatherAsync } = useActions(appLogic);
-
-  return (
+const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
     <BarForm onSubmit={updateWeatherAsync}>
       <InputInBarForm
         type='text'
@@ -34,7 +28,6 @@ const TopBar = () => {
         Get weather
       </ButtonInBarForm>
     </BarForm>
-  );
-};
+);
 
 export default TopBar;
