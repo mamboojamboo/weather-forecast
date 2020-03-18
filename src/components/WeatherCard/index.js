@@ -1,37 +1,29 @@
 import React from 'react';
-import { useValues, useActions } from 'kea';
 
-import appLogic from '../../store/appLogic';
+import { CardWrapper, CardTitle } from './units';
+import LoadingProgress from '../LoadingProgress';
 
-function minMaxTemp(min, max) {
-  if (min && max) {
-    return (
-      <h3>
-        <span>{min}&deg;</span>
-        <span>{max}&deg;</span>
-      </h3>
-    );
-  }
-}
+const WeatherCard = ({ weather, isLoading }) => (
 
-const WeatherCard = () => {
-  const { weather, isLoading } = useValues(appLogic);
-  const { updateWeatherAsync } = useActions(appLogic);
+  <CardWrapper>
 
-  return (
-    isLoading ? 'Loading data...' : (<div className='weather-card'>
-      <h1>
-        {weather.city}
-      </h1>
-      <i className={`wi ${weather.weatherIcon}`}/>
+    <LoadingProgress {...{ isLoading }}/>
 
-      { weather.tempCelsius ? (<h1>{weather.tempCelsius}&deg;</h1>) : null}
+    <CardTitle>{weather.city}</CardTitle>
+    <i className={`wi ${weather.weatherIcon}`}/>
 
-      {minMaxTemp(weather.tempMin, weather.tempMax)}
-      <h4>{weather.description}</h4>
-    </div>)
+    { weather.tempCelsius ? (<h1>{weather.tempCelsius}&deg;</h1>) : null}
 
-  );
-};
+    {weather.tempMin && weather.tempMax
+      ? (<h3>
+          <span>{weather.tempMin}&deg;</span>
+          <span>{weather.tempMax}&deg;</span>
+        </h3>)
+      : null}
+
+    <h4>{weather.description}</h4>
+  </CardWrapper>
+
+);
 
 export default WeatherCard;
