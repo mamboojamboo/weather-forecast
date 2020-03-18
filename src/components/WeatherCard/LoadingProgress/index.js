@@ -3,11 +3,9 @@ import React from 'react';
 import Wrapper from './units';
 
 const LoadingProgress = ({ isLoading }) => (
-  (isLoading)
-    ? (<Wrapper>
-        Loading ...
-      </Wrapper>)
-    : null
-);
+    <Wrapper {...{ isLoading }}>
+      Loading your weather ...
+    </Wrapper>
 
+);
 export default LoadingProgress;
