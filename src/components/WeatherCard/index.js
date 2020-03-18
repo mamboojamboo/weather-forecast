@@ -1,9 +1,14 @@
 import React from 'react';
 
-const WeatherCard = () => (
-    <div>
-      WeatherCard
-    </div>
+import Wrapper from './units';
+import LoadingProgress from './LoadingProgress';
+import Card from './Card';
+
+const WeatherCard = ({ weather, isLoading }) => (
+  <Wrapper>
+    <LoadingProgress {...{ isLoading }}/>
+    <Card {...{ weather, isLoading }}/>
+  </Wrapper>
 );
 
 export default WeatherCard;
