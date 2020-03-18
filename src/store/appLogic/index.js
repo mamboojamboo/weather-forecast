@@ -10,7 +10,7 @@ const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 const appLogic = kea({
   actions: () => ({
-    loadData: (data) => (data),
+    loadData: (boolean) => (boolean),
     updateWeather: (data) => (data)
   }),
 
@@ -30,9 +30,7 @@ const appLogic = kea({
     }],
 
     isLoading: [false, {
-      [actions.loadData]: (state, payload) => payload,
-      [actions.updateWeather]: () => false,
-      [actions.updateWeatherAsync]: () => true
+      [actions.loadData]: (_, payload) => payload
     }]
   }),
 
@@ -51,7 +49,7 @@ const appLogic = kea({
         return actions.updateWeather(answer);
       }
 
-      await delay(5000);
+      await delay(1000);
       await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
         .then((res) => {
           const answer = {
@@ -66,11 +64,11 @@ const appLogic = kea({
             error: false
           };
           actions.updateWeather(answer);
-          actions.loadData(false);
         })
         .catch((err) => {
           console.log(err);
         });
+      actions.loadData(false);
     }
 
   })
