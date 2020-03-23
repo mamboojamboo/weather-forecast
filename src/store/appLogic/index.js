@@ -13,8 +13,8 @@ const appLogic = kea({
       country: undefined,
       icon: undefined,
       tempCelsius: undefined,
-      tempCelsiusMax: undefined,
       tempCelsiusMin: undefined,
+      tempCelsiusMax: undefined,
       description: '',
       error: false
     }, {
@@ -29,7 +29,6 @@ const appLogic = kea({
   thunks: ({ actions }) => ({
     updateWeatherAsync: async (event) => {
       event.preventDefault();
-      actions.loadData(true);
 
       const city = event.target.inputCity.value;
       const country = event.target.inputCountry.value;
@@ -41,10 +40,12 @@ const appLogic = kea({
         return actions.updateWeather(answer);
       }
 
+      actions.loadData(true);
+
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(1000);
 
-      await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
+      await axios.get(`//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
         .then((res) => {
           console.log(res);
 
@@ -74,8 +75,8 @@ const appLogic = kea({
             country: res.data.sys.country,
             icon: getWeatherIcon(res.data.weather[0].id),
             tempCelsius: Math.floor(res.data.main.temp - 273.15),
-            tempCelsiusMax: Math.floor(res.data.main.temp_max - 273.15),
             tempCelsiusMin: Math.floor(res.data.main.temp_min - 273.15),
+            tempCelsiusMax: Math.floor(res.data.main.temp_max - 273.15),
             description: res.data.weather[0].description,
             error: false
           };

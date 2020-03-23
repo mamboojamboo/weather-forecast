@@ -21,18 +21,19 @@ const InputInBarForm = styled.input`
   text-transform: uppercase
 `;
 
-const ButtonInBarForm = styled.button`
-  display: flex;
-  width: 20%;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  border: none;
-  background: #d55905;
-  outline: none;
-  border-radius: 5px;
-  color: white;
-`;
+const ButtonInBarForm = styled.button((props) => ({
+  display: 'flex',
+  width: '20%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '1.2rem',
+  border: 'none',
+  background: !props.disabled ? '#d55905' : '#d19064',
+  outline: 'none',
+  borderRadius: '5px',
+  color: 'white',
+  boxShadow: !props.disabled ? '0 5px 0 #a64403' : '0 5px 0 #d17b41'
+}));
 
 export {
   BarForm,
