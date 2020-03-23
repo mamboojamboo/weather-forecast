@@ -1,4 +1,5 @@
 import React from 'react';
+import 'weather-icons/css/weather-icons.css';
 
 import {
   Wrapper, City, WeatherIcon, TempCelsius, TempMinMax, Description
@@ -9,20 +10,20 @@ const Card = ({ weather, isLoading }) => (
 
       <City city={weather.city}>{weather.city}</City>
 
-      <WeatherIcon icon={weather.weatherIcon}>
-      <i className={`wi ${weather.weatherIcon}`}/>
+      <WeatherIcon icon={weather.icon}>
+        <i className={`wi ${weather.icon}`}/>
       </WeatherIcon>
 
       <TempCelsius tempCelsius={weather.tempCelsius}>
         { weather.tempCelsius}&deg;
       </TempCelsius>
 
-      <TempMinMax tempMin={weather.tempMin} tempMax={weather.tempMax}>
-        {weather.tempMin}&deg; - {weather.tempMax}&deg;
+      <TempMinMax tempCelsiusMin={weather.tempCelsiusMin} tempCelsiusMax={weather.tempCelsiusMax}>
+        {weather.tempCelsiusMin}&deg; - {weather.tempCelsiusMax}&deg;
       </TempMinMax>
 
       <Description description={weather.description}>
-      {weather.description}
+        {weather.description}
       </Description>
 
     </Wrapper>
