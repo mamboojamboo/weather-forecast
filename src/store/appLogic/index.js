@@ -1,13 +1,6 @@
 import { kea } from 'kea';
 import axios from 'axios';
 
-const tempToCelsius = (temp) => {
-  const cell = Math.floor(temp - 273.15);
-  return cell;
-};
-
-const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
-
 const appLogic = kea({
   actions: () => ({
     loadData: (boolean) => (boolean),
@@ -19,10 +12,9 @@ const appLogic = kea({
       city: undefined,
       country: undefined,
       icon: undefined,
-      main: undefined,
       tempCelsius: undefined,
-      tempMax: undefined,
-      tempMin: undefined,
+      tempCelsiusMax: undefined,
+      tempCelsiusMin: undefined,
       description: '',
       error: false
     }, {
@@ -49,17 +41,41 @@ const appLogic = kea({
         return actions.updateWeather(answer);
       }
 
+      const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(1000);
+
       await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
         .then((res) => {
+          console.log(res);
+
+          const getWeatherIcon = (rangeId) => {
+            switch (true) {
+              case rangeId >= 200 && rangeId <= 232:
+                return 'wi-thunderstorm';
+              case rangeId >= 300 && rangeId <= 321:
+                return 'wi-sleet';
+              case rangeId >= 500 && rangeId <= 531:
+                return 'wi-storm-showers';
+              case rangeId >= 600 && rangeId <= 622:
+                return 'wi-snow';
+              case rangeId >= 701 && rangeId <= 781:
+                return 'wi-fog';
+              case rangeId === 800:
+                return 'wi-day-sunny';
+              case rangeId >= 801 && rangeId <= 804:
+                return 'wi-day-fog';
+              default:
+                return 'wi-day-fog';
+            }
+          };
+
           const answer = {
             city: res.data.name,
             country: res.data.sys.country,
-            icon: undefined,
-            main: undefined,
-            tempCelsius: tempToCelsius(res.data.main.temp),
-            tempMax: tempToCelsius(res.data.main.temp_max),
-            tempMin: tempToCelsius(res.data.main.temp_min),
+            icon: getWeatherIcon(res.data.weather[0].id),
+            tempCelsius: Math.floor(res.data.main.temp - 273.15),
+            tempCelsiusMax: Math.floor(res.data.main.temp_max - 273.15),
+            tempCelsiusMin: Math.floor(res.data.main.temp_min - 273.15),
             description: res.data.weather[0].description,
             error: false
           };
