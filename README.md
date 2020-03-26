@@ -1,6 +1,6 @@
 # Weather-forecast - app showing the weather in real time.
 
-![Profile Page](/screenshot.png)
+![Profile Page](/main.png)
 
 ## Installation:
 
@@ -15,7 +15,9 @@ Please make sure that you have all the necessary modules installed. To do this, 
 
 ## Additionally
 
-The app uses: [Weather Icons](https://github.com/erikflowers/weather-icons),
+Stack: [React](https://reactjs.org/), [React-Hooks](https://reactjs.org/docs/hooks-intro.html), [Kea](https://kea.js.org/), [Emotion](https://emotion.sh/docs/introduction)
+
+Used API: [Weather Icons](https://github.com/erikflowers/weather-icons),
 [Open Weather Map](https://openweathermap.org/).
 
 The code is written in accordance with [AirBnB JavaScript Style Guide](http://airbnb.io/projects/javascript).
