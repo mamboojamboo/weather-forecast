@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   SearchForm,
@@ -53,5 +54,23 @@ const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
       </Button>
     </SearchForm>
 );
+
+TopBar.propTypes = {
+  weather: PropTypes.shape({
+    city: PropTypes.string,
+    country: PropTypes.string,
+    icon: PropTypes.string,
+    tempCelsius: PropTypes.number,
+    tempCelsiusMin: PropTypes.number,
+    tempCelsiusMax: PropTypes.number,
+    description: PropTypes.string,
+    error: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.object
+    ])
+  }).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  updateWeatherAsync: PropTypes.func.isRequired
+};
 
 export default TopBar;

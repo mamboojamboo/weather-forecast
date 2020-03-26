@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import 'weather-icons/css/weather-icons.css';
 
 import {
@@ -28,4 +29,22 @@ const Card = ({ weather, isLoading }) => (
 
     </Wrapper>
 );
+
+Card.propTypes = {
+  weather: PropTypes.shape({
+    city: PropTypes.string,
+    country: PropTypes.string,
+    icon: PropTypes.string,
+    tempCelsius: PropTypes.number,
+    tempCelsiusMin: PropTypes.number,
+    tempCelsiusMax: PropTypes.number,
+    description: PropTypes.string,
+    error: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.object
+    ])
+  }).isRequired,
+  isLoading: PropTypes.bool.isRequired
+};
+
 export default Card;

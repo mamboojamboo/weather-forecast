@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { kea } from 'kea';
 import axios from 'axios';
 
@@ -19,14 +20,26 @@ const appLogic = kea({
       tempCelsiusMax: null,
       description: '',
       error: false
-    }, {
+    },
+    PropTypes.shape({
+      city: PropTypes.string,
+      country: PropTypes.string,
+      icon: PropTypes.string,
+      tempCelsius: PropTypes.number,
+      tempCelsiusMin: PropTypes.number,
+      tempCelsiusMax: PropTypes.number,
+      description: PropTypes.string,
+      error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object
+      ])
+    }), {
       [actions.updateWeather]: (state, payload) => ({ ...state, ...payload })
     }],
 
-    isLoading: [false, {
+    isLoading: [false, PropTypes.bool, {
       [actions.setLoading]: (_, payload) => payload
     }]
-
   }),
 
   thunks: ({ actions, values }) => ({
