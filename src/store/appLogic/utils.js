@@ -1,3 +1,31 @@
+const errorChecker = (city, country, callback) => {
+  switch (true) {
+    case (!city && !country):
+      return callback({
+        error: {
+          city: 'You need to enter city',
+          country: 'You need to enter country'
+        }
+      });
+    case (!city):
+      return callback({
+        error: {
+          city: 'You need to enter city'
+        }
+      });
+    case (!country):
+      return callback({
+        error: {
+          country: 'You need to enter country'
+        }
+      });
+    default:
+      return callback({
+        error: false
+      });
+  }
+};
+
 const getIcon = (rangeId, now, sunrise, sunset) => {
   const isDay = (sunrise < now) && (now < sunset);
 
@@ -51,4 +79,4 @@ const getIcon = (rangeId, now, sunrise, sunset) => {
   }
 };
 
-export default getIcon;
+export { errorChecker, getIcon };

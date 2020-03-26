@@ -1,11 +1,11 @@
 import { kea } from 'kea';
 import axios from 'axios';
 
-import getIcon from './utils';
+import { errorChecker, getIcon } from './utils';
 
 const appLogic = kea({
   actions: () => ({
-    loadData: (boolean) => (boolean),
+    setLoading: (boolean) => (boolean),
     updateWeather: (data) => (data)
   }),
 
@@ -24,53 +24,25 @@ const appLogic = kea({
     }],
 
     isLoading: [false, {
-      [actions.loadData]: (_, payload) => payload
+      [actions.setLoading]: (_, payload) => payload
     }]
+
   }),
 
-  thunks: ({ actions }) => ({
+  thunks: ({ actions, values }) => ({
     updateWeatherAsync: async (event) => {
       event.preventDefault();
 
       const city = event.target.inputCity.value;
       const country = event.target.inputCountry.value;
 
-      if (!city && !country) {
-        const answer = {
-          error: {
-            city: 'You need to enter city',
-            country: 'You need to enter country'
-          }
-        };
-        return actions.updateWeather(answer);
+      errorChecker(city, country, actions.updateWeather);
+
+      if (values.weather.error) {
+        return;
       }
 
-      if (!city) {
-        const answer = {
-          error: {
-            city: 'You need to enter city'
-          }
-        };
-        return actions.updateWeather(answer);
-      }
-
-      if (!country) {
-        const answer = {
-          error: {
-            country: 'You need to enter country'
-          }
-        };
-        return actions.updateWeather(answer);
-      }
-
-      if (city && country) {
-        const answer = {
-          error: false
-        };
-        actions.updateWeather(answer);
-      }
-
-      actions.loadData(true);
+      actions.setLoading(true);
 
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(1000);
@@ -92,9 +64,7 @@ const appLogic = kea({
             tempCelsiusMin: Math.floor(res.data.main.temp_min - 273.15),
             tempCelsiusMax: Math.floor(res.data.main.temp_max - 273.15),
             description: res.data.weather[0].description,
-            error: {
-              status: false
-            }
+            error: false
           };
 
           return actions.updateWeather(answer);
@@ -102,7 +72,7 @@ const appLogic = kea({
         .catch((err) => {
           console.log(err);
         });
-      return actions.loadData(false);
+      actions.setLoading(false);
     }
 
   })
