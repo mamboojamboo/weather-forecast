@@ -21,7 +21,7 @@ const FieldTitle = styled.span`
 `;
 
 const ErrorMessage = styled.span((props) => ({
-  display: props.error ? 'flex' : 'none',
+  display: props.error ? 'inline' : 'none',
   fontSize: '0.8rem',
   color: 'darkred'
 }));
