@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const BarForm = styled.form`
+const SearchForm = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -8,20 +8,36 @@ const BarForm = styled.form`
   padding: 2%;
 `;
 
-const InputInBarForm = styled.input`
+const FieldWrapper = styled.div`
+  display:flex;
+  flex-direction: column;
+  width: 33%;
+`;
+
+const FieldTitle = styled.span`
+  font-size: 0.8rem;
+  color: white;
+  margin-bottom: 5px;
+`;
+
+const ErrorMessage = styled.span`
+  font-size: 0.8rem;
+  color: darkred;
+`;
+
+const FieldInput = styled.input`
   display: flex;
   background: none;
   outline: none;
   border: none;
   border-bottom: 1px solid white;
-  width: 33%;
   padding: 0.5% 0%;
   font-size: 1.2rem;
   color:white;
   text-transform: uppercase
 `;
 
-const ButtonInBarForm = styled.button((props) => ({
+const Button = styled.button((props) => ({
   display: 'flex',
   width: '20%',
   justifyContent: 'center',
@@ -37,7 +53,10 @@ const ButtonInBarForm = styled.button((props) => ({
 }));
 
 export {
-  BarForm,
-  InputInBarForm,
-  ButtonInBarForm
+  SearchForm,
+  FieldWrapper,
+  FieldTitle,
+  ErrorMessage,
+  FieldInput,
+  Button
 };

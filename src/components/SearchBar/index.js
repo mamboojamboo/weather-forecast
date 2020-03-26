@@ -1,33 +1,57 @@
 import React from 'react';
 
 import {
-  BarForm,
-  InputInBarForm,
-  ButtonInBarForm
+  SearchForm,
+  FieldWrapper,
+  FieldTitle,
+  ErrorMessage,
+  FieldInput,
+  Button
 } from './units';
 
 const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
-    <BarForm onSubmit={updateWeatherAsync}>
-      <InputInBarForm
-        type='text'
-        name='inputCity'
-        autoComplete='off'
-        placeholder={!weather.error ? 'city' : 'enter city'}
-        defaultValue={weather.city}
-      />
-      <InputInBarForm
-        type='text'
-        name='inputCountry'
-        autoComplete='off'
-        placeholder={!weather.error ? 'country' : 'enter country'}
-        defaultValue={weather.country}
-      />
-      <ButtonInBarForm
+    <SearchForm onSubmit={updateWeatherAsync}>
+
+      <FieldWrapper>
+        <FieldTitle>
+          City:
+          {weather.error.city
+            ? <ErrorMessage>&nbsp;{weather.error.city}</ErrorMessage>
+            : null}
+        </FieldTitle>
+
+        <FieldInput
+          type='text'
+          name='inputCity'
+          autoComplete='off'
+          placeholder='London'
+          defaultValue={weather.city}
+        />
+      </FieldWrapper>
+
+      <FieldWrapper>
+        <FieldTitle>
+          Country:
+          {weather.error.country
+            ? <ErrorMessage>&nbsp;{weather.error.country}</ErrorMessage>
+            : null}
+        </FieldTitle>
+
+        <FieldInput
+          type='text'
+          name='inputCountry'
+          autoComplete='off'
+          placeholder='UK'
+          defaultValue={weather.country}
+        />
+      </FieldWrapper>
+
+      <Button
         disabled={isLoading}
       >
         Get weather
-      </ButtonInBarForm>
-    </BarForm>
+      </Button>
+    </SearchForm>
 );
 
 export default TopBar;

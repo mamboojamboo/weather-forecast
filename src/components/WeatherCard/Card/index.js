@@ -8,7 +8,7 @@ import {
 const Card = ({ weather, isLoading }) => (
     <Wrapper {...{ isLoading }}>
 
-      <City city={weather.city}>{weather.city}</City>
+      <City city={weather.city}>{weather.city}, {weather.country}</City>
 
       <WeatherIcon icon={weather.icon}>
         <i className={`wi ${weather.icon}`}/>
