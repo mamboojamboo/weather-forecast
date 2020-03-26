@@ -1,36 +1,48 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
-const Wrapper = styled.div((props) => ({
-  display: !props.isLoading ? 'flex' : 'none',
-  flexDirection: 'column',
-  alignItems: 'center',
-  textTransform: 'uppercase',
-  fontSize: '2rem',
-  color: 'white'
-}));
+const Wrapper = styled.div`
+  ${({ isLoading }) => css`
+    display: ${!isLoading ? 'flex' : 'none'};
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: white;
+  `}
+`;
 
-const City = styled.span((props) => ({
-  display: props.city ? 'inline' : 'none',
-  fontSize: '4rem'
-}));
+const City = styled.span`
+  ${({ city }) => css`
+    display: ${city ? 'inline' : 'none'};
+    font-size: 4rem;
+  `}
+`;
 
-const WeatherIcon = styled.div((props) => ({
-  display: props.icon ? 'inline' : 'none',
-  fontSize: '8rem'
-}));
+const WeatherIcon = styled.span`
+  ${({ icon }) => css`
+    display: ${icon ? 'inline' : 'none'};
+    font-size: 6rem;
+  `}
+`;
 
+const TempCelsius = styled.span`
+  ${({ tempCelsius }) => css`
+    display: ${tempCelsius ? 'inline' : 'none'};
+  `}
+`;
 
-const TempCelsius = styled.span((props) => ({
-  display: props.tempCelsius ? 'inline' : 'none'
-}));
+const TempMinMax = styled.span`
+  ${({ tempCelsiusMin, tempCelsiusMax }) => css`
+    display: ${tempCelsiusMin && tempCelsiusMax ? 'inline' : 'none'};
+  `}
+`;
 
-const TempMinMax = styled.span((props) => ({
-  display: props.tempCelsiusMin && props.tempCelsiusMax ? 'inline' : 'none'
-}));
-
-const Description = styled.span((props) => ({
-  display: props.description ? 'inline' : 'none'
-}));
+const Description = styled.span`
+  ${({ description }) => css`
+    display: ${description ? 'inline' : 'none'};
+  `}
+`;
 
 export {
   Wrapper, City, WeatherIcon, TempCelsius, TempMinMax, Description

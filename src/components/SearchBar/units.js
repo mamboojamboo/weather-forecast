@@ -32,7 +32,8 @@ const ButtonInBarForm = styled.button((props) => ({
   outline: 'none',
   borderRadius: '5px',
   color: 'white',
-  boxShadow: !props.disabled ? '0 5px 0 #a64403' : '0 5px 0 #d17b41'
+  boxShadow: !props.disabled ? '0 5px 0 #a64403' : '0 5px 0 #d17b41',
+  cursor: 'pointer'
 }));
 
 export {
