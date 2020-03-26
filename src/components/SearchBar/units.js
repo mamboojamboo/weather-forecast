@@ -20,10 +20,12 @@ const FieldTitle = styled.span`
   margin-bottom: 5px;
 `;
 
-const ErrorMessage = styled.span`
-  font-size: 0.8rem;
-  color: darkred;
-`;
+const ErrorMessage = styled.span((props) => ({
+  display: props.error ? 'flex' : 'none',
+  fontSize: '0.8rem',
+  color: 'darkred'
+}));
+
 
 const FieldInput = styled.input`
   display: flex;

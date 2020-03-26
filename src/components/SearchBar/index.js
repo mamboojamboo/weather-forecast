@@ -16,9 +16,7 @@ const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
       <FieldWrapper>
         <FieldTitle>
           City:
-          {weather.error.city
-            ? <ErrorMessage>&nbsp;{weather.error.city}</ErrorMessage>
-            : null}
+          <ErrorMessage error={weather.error.city}>&nbsp;{weather.error.city}</ErrorMessage>
         </FieldTitle>
 
         <FieldInput
@@ -33,9 +31,7 @@ const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
       <FieldWrapper>
         <FieldTitle>
           Country:
-          {weather.error.country
-            ? <ErrorMessage>&nbsp;{weather.error.country}</ErrorMessage>
-            : null}
+          <ErrorMessage error={weather.error.country}>&nbsp;{weather.error.country}</ErrorMessage>
         </FieldTitle>
 
         <FieldInput
