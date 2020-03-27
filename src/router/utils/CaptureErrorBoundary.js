@@ -1,5 +1,5 @@
 import React from 'react';
-// todo error page
+import ErrorPage from '../../pages/ErrorPage';
 
 export default class CaptureErrorBoundary extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class CaptureErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       // Можно отрендерить запасной UI произвольного вида
-      return <h1>Что-то пошло не так.</h1>;
+      return <ErrorPage />;
     }
 
     return this.props.children;
