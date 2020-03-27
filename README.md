@@ -17,6 +17,7 @@ To do this, enter the following commands in the console:
 ## Additionally
 
 Stack: [React](https://reactjs.org/), [React-Hooks](https://reactjs.org/docs/hooks-intro.html), [Kea](https://kea.js.org/), [Emotion](https://emotion.sh/docs/introduction)
+
 Used API: [Weather Icons](https://github.com/erikflowers/weather-icons),
 [Open Weather Map](https://openweathermap.org/).
 
