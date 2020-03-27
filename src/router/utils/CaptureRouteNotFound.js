@@ -1,7 +1,8 @@
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-// Todo error not found page
+import NotFoundPage from '../../pages/NotFoundPage';
 
 export default withRouter(({ children, location }) => (
   location && location.state && location.state.notFoundError
-    ? '404 Page not found'
+    ? <NotFoundPage/>
     : children));

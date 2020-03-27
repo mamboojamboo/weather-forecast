@@ -11,15 +11,14 @@ export const Router = () => (
     <CaptureErrorBoundary>
       <CaptureRouteNotFound>
         <Switch>
-          <Route exact path='/main' title='Main Page' components={MainPage} />
-          <Redirect from='/' to='main' />
+          <Route exact path='/' title='Main Page' component={MainPage} />
           <Redirect to={{ state: { notFoundError: true } }} />
         </Switch>
       </CaptureRouteNotFound>
     </CaptureErrorBoundary>
 );
 
-export default class MainRouter extends React.Component {
+class MainRouter extends React.Component {
   render() {
     return (
       <ConnectedRouter history={history}>
@@ -28,3 +27,5 @@ export default class MainRouter extends React.Component {
     );
   }
 }
+
+export default MainRouter;

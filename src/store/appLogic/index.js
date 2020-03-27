@@ -82,9 +82,7 @@ const appLogic = kea({
 
           return actions.updateWeather(answer);
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => err);
       actions.setLoading(false);
     }
 
