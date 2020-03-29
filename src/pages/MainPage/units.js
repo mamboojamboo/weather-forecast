@@ -7,8 +7,8 @@ const MainPageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
-  align-items: center;
-  background: #142136;
+  background: #f7f7f7;
+  padding: 5% 5%;
 `;
 
 export default MainPageWrapper;

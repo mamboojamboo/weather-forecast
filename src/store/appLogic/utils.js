@@ -26,6 +26,30 @@ const errorChecker = (city, country, callback) => {
   }
 };
 
+const formatDate = (date, timezone) => {
+  const timezoneShift = timezone * 1000;
+  const dateToJs = new Date(Date(date));
+  const UTCdate = dateToJs.getTime() + dateToJs.getTimezoneOffset() * 60000;
+  const dateOfLocation = new Date(UTCdate + timezoneShift);
+
+  const dateObj = {
+    hours: dateOfLocation.getHours() < 10
+      ? `0${dateOfLocation.getHours()}`
+      : dateOfLocation.getHours(),
+    minutes: dateOfLocation.getMinutes() < 10
+      ? `0${dateOfLocation.getMinutes()}`
+      : dateOfLocation.getMinutes(),
+    weekDay: dateOfLocation.toLocaleString('en-EN', { weekday: 'long' }),
+    date: dateOfLocation.getDate(),
+    month: dateOfLocation.toLocaleString('en-EN', { month: 'long' }),
+    year: dateOfLocation.getFullYear()
+  };
+
+  return `${dateObj.hours} : ${dateObj.minutes} - ${dateObj.weekDay}, ${dateObj.date}  ${dateObj.month} ${dateObj.year}`;
+};
+
+const tempToCelsius = (temperature) => Math.floor(temperature - 273.15);
+
 const getIcon = (rangeId, now, sunrise, sunset) => {
   const isDay = (sunrise < now) && (now < sunset);
 
@@ -79,4 +103,6 @@ const getIcon = (rangeId, now, sunrise, sunset) => {
   }
 };
 
-export { errorChecker, getIcon };
+export {
+  errorChecker, formatDate, tempToCelsius, getIcon
+};

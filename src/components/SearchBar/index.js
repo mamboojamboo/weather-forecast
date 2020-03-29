@@ -55,10 +55,13 @@ TopBar.propTypes = {
   weather: PropTypes.shape({
     city: PropTypes.string,
     country: PropTypes.string,
+    date: PropTypes.number,
+    sunrise: PropTypes.number,
+    sunset: PropTypes.number,
     icon: PropTypes.string,
-    tempCelsius: PropTypes.number,
-    tempCelsiusMin: PropTypes.number,
-    tempCelsiusMax: PropTypes.number,
+    temp: PropTypes.number,
+    tempMin: PropTypes.number,
+    tempMax: PropTypes.number,
     description: PropTypes.string,
     error: PropTypes.oneOfType([
       PropTypes.bool,

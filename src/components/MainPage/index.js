@@ -2,7 +2,7 @@ import React from 'react';
 
 import Wrapper from './units';
 import LoadingProgress from './LoadingProgress';
-import Card from './Card';
+import Card from './MainWidget';
 
 const WeatherCard = ({ weather, isLoading }) => (
   <Wrapper>
