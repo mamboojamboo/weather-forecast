@@ -66,7 +66,7 @@ const appLogic = kea({
       actions.setLoading(true);
 
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
-      await delay(10000);
+      await delay(2000);
 
       await axios.get(`//api.openweathermap.org/data/2.5/weather?q=london,uk&appid=${process.env.REACT_APP_API}`)
         .then((res) => {

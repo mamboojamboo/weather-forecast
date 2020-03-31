@@ -25,11 +25,9 @@ const ColumnWrapper = styled.div`
 `;
 
 const Temp = styled.span`
-  ${({ temp }) => css`
-    display: ${temp ? 'inline' : 'none'};
+    display: 'inline';
     font-size: 6rem;
     line-height: 5rem;
-  `}
 `;
 
 const City = styled.span`
@@ -44,17 +42,13 @@ const Date = styled.div`
 `;
 
 const WeatherIcon = styled.span`
-  ${({ icon }) => css`
-    display: ${icon ? 'inline' : 'none'};
+    display: 'inline';
     font-size: 1.5rem;
-  `}
 `;
 
 const Description = styled.span`
-  ${({ description }) => css`
-    display: ${description ? 'inline' : 'none'};
+    display: 'inline';
     font-size: 0.85rem;
-  `}
 `;
 
 export {

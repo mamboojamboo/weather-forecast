@@ -8,34 +8,27 @@ import {
 
 import LoadingProgress from '../../LoadingProgress';
 
-const Card = ({ weather, isLoading }) => (
+const MainWidget = ({ weather, isLoading }) => (
     <Wrapper>
 
       <LoadingProgress {...{ isLoading }}/>
 
-      <Temp temp={weather.temp}>
-        { weather.temp}&deg;
-      </Temp>
+      <Temp>{ weather.temp }</Temp>
 
       <ColumnWrapper>
-        <City city={weather.city}>{weather.city}, {weather.country}</City>
-        <Date>{weather.date}</Date>
+        <City city={ weather.city }>{ weather.city }, { weather.country }</City>
+        <Date>{ weather.date }</Date>
       </ColumnWrapper>
 
       <ColumnWrapper>
-        <WeatherIcon icon={weather.icon}>
-          <i className={`wi ${weather.icon}`}/>
-        </WeatherIcon>
-
-        <Description description={weather.description}>
-          {weather.description}
-        </Description>
+        <WeatherIcon><i className={`wi ${weather.icon}`}/></WeatherIcon>
+        <Description>{ weather.description }</Description>
       </ColumnWrapper>
 
     </Wrapper>
 );
 
-Card.propTypes = {
+MainWidget.propTypes = {
   weather: PropTypes.shape({
     city: PropTypes.string,
     country: PropTypes.string,
@@ -43,7 +36,7 @@ Card.propTypes = {
     sunrise: PropTypes.number,
     sunset: PropTypes.number,
     icon: PropTypes.string,
-    temp: PropTypes.number,
+    temp: PropTypes.string,
     tempMin: PropTypes.number,
     tempMax: PropTypes.number,
     description: PropTypes.string,
@@ -55,4 +48,4 @@ Card.propTypes = {
   isLoading: PropTypes.bool.isRequired
 };
 
-export default Card;
+export default MainWidget;

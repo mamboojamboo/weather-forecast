@@ -10,12 +10,7 @@ const Wrapper = styled.div((props) => ({
   display: props.isLoading ? 'flex' : 'none',
   alignItems: 'center',
   justifyContent: 'center',
-  // visibility: props.isLoading ? 'visible' : 'hidden',
-  width: '100%',
-  height: '100%',
   flexDirection: 'row'
 }));
 
 export default Wrapper;
-
-// visibility: props.isLoading ? 'visible' : 'hidden',

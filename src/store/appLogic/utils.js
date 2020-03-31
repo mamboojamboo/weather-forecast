@@ -48,7 +48,7 @@ const formatDate = (date, timezone) => {
   return `${dateObj.hours} : ${dateObj.minutes} - ${dateObj.weekDay}, ${dateObj.date}  ${dateObj.month} ${dateObj.year}`;
 };
 
-const tempToCelsius = (temperature) => Math.floor(temperature - 273.15);
+const tempToCelsius = (temperature) => `${Math.floor(temperature - 273.15)}\xB0`;
 
 const getIcon = (rangeId, now, sunrise, sunset) => {
   const isDay = (sunrise < now) && (now < sunset);
