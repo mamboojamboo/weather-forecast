@@ -6,8 +6,12 @@ import {
   Wrapper, City, WeatherIcon, Temp, Date, Description, ColumnWrapper
 } from './units';
 
+import LoadingProgress from '../../LoadingProgress';
+
 const Card = ({ weather, isLoading }) => (
-    <Wrapper {...{ isLoading }}>
+    <Wrapper>
+
+      <LoadingProgress {...{ isLoading }}/>
 
       <Temp temp={weather.temp}>
         { weather.temp}&deg;

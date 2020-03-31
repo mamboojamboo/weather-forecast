@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
 const Wrapper = styled.div`
-  ${({ isLoading }) => css`
+    position: relative;
     width: 30%;
-    display: ${!isLoading ? 'flex' : 'none'};
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
@@ -12,7 +12,6 @@ const Wrapper = styled.div`
     padding: 2% 1%;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     margin-top: 2%;
-  `}
 `;
 
 const ColumnWrapper = styled.div`
