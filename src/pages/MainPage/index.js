@@ -10,15 +10,15 @@ import appLogic from '../../store/appLogic';
 
 const MainPage = () => {
   const { weather, isLoading } = useValues(appLogic);
-  const { updateWeatherAsync } = useActions(appLogic);
+  const { getWeatherAsync, updateWeatherAsync } = useActions(appLogic);
 
   useEffect(() => {
-    updateWeatherAsync();
-  }, [updateWeatherAsync]);
+    getWeatherAsync();
+  }, []);
 
   return (
     <MainPageWrapper>
-      <Header/>
+      <Header {...{ weather, isLoading, updateWeatherAsync }}/>
       <MainWidget {...{ weather, isLoading }} />
     </MainPageWrapper>
   );

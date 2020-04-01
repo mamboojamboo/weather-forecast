@@ -33,9 +33,9 @@ const appLogic = kea({
       sunrise: PropTypes.number,
       sunset: PropTypes.number,
       icon: PropTypes.string,
-      temp: PropTypes.number,
-      tempMin: PropTypes.number,
-      tempMax: PropTypes.number,
+      temp: PropTypes.string,
+      tempMin: PropTypes.string,
+      tempMax: PropTypes.string,
       description: PropTypes.string,
       error: PropTypes.oneOfType([
         PropTypes.bool,
@@ -51,24 +51,58 @@ const appLogic = kea({
   }),
 
   thunks: ({ actions, values }) => ({
-    updateWeatherAsync: async (event) => {
-      // event.preventDefault();
-
-      // const city = event.target.inputCity.value.toLowerCase();
-      // const country = event.target.inputCountry.value.toLowerCase();
-
-      // errorChecker(city, country, actions.updateWeather);
-
-      // if (values.weather.error) {
-      //   return;
-      // }
-
+    getWeatherAsync: async () => {
       actions.setLoading(true);
 
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(2000);
 
       await axios.get(`//api.openweathermap.org/data/2.5/weather?q=london,uk&appid=${process.env.REACT_APP_API}`)
+        .then((res) => {
+
+          const answer = {
+            city: res.data.name,
+            country: res.data.sys.country,
+            date: formatDate(res.data.dt, res.data.timezone),
+            sunrise: res.data.sys.sunrise,
+            sunset: res.data.sys.sunset,
+            icon: getIcon(
+              res.data.weather[0].id,
+              res.data.dt,
+              res.data.sys.sunrise,
+              res.data.sys.sunset
+            ),
+            temp: tempToCelsius(res.data.main.temp),
+            tempMin: tempToCelsius(res.data.main.temp_min),
+            tempMax: tempToCelsius(res.data.main.temp_max),
+            description: res.data.weather[0].description,
+            error: false
+          };
+
+          return actions.updateWeather(answer);
+        })
+        .catch((err) => err);
+      actions.setLoading(false);
+    },
+
+    updateWeatherAsync: async (event) => {
+      event.preventDefault();
+
+      const city = event.target.inputCity.value.toLowerCase();
+      const country = event.target.inputCountry.value.toLowerCase();
+
+      errorChecker(city, country, actions.updateWeather);
+
+      if (values.weather.error) {
+        return;
+      }
+
+      actions.setLoading(true);
+
+      const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+      await delay(2000);
+
+      await axios.get(`//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
         .then((res) => {
           console.log(res);
 

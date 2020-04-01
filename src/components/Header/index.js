@@ -1,10 +1,15 @@
 import React from 'react';
+import SearchBar from './SearchBar';
+import { Wrapper, Title } from './units';
 
-const Header = () => {
+const Header = ({ weather, isLoading, updateWeatherAsync }) => {
   const data = 0;
 
   return (
-    <h1>Main weather</h1>
+    <Wrapper>
+      <Title>Main weather</Title>
+      <SearchBar {...{ weather, isLoading, updateWeatherAsync }} />
+    </Wrapper>
   );
 };
 

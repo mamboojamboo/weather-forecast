@@ -1,16 +1,18 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
 const SearchForm = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
 `;
 
 const FieldWrapper = styled.div`
-  display:flex;
-  flex-direction: column;
-  width: 33%;
+  ${({ isSearchOpen }) => css`
+    display: ${isSearchOpen ? 'flex' : 'none'};
+    flex-direction: column;
+    width: 33%;
+  `}
 `;
 
 const FieldTitle = styled.span`
@@ -40,16 +42,13 @@ const FieldInput = styled.input`
 
 const Button = styled.button((props) => ({
   display: 'flex',
-  width: '20%',
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '1.2rem',
   border: 'none',
   background: !props.disabled ? '#6ccbcd' : '#d19064',
   outline: 'none',
-  borderRadius: '5px',
   color: 'white',
-  // boxShadow: !props.disabled ? '0 5px 0 #a64403' : '0 5px 0 #d17b41',
   cursor: 'pointer'
 }));
 

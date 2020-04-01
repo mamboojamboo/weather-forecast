@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -10,10 +10,14 @@ import {
   Button
 } from './units';
 
-const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
+const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
+  const [isSearchOpen, setIsSearchOpen] = useState(true);
+
+  console.log('isSearchOpen', isSearchOpen)
+  return (
     <SearchForm onSubmit={updateWeatherAsync}>
 
-      <FieldWrapper>
+      <FieldWrapper isSearchOpen>
         <FieldTitle>
           City:
           <ErrorMessage error={weather.error.city}>&nbsp;{weather.error.city}</ErrorMessage>
@@ -23,12 +27,10 @@ const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
           type='text'
           name='inputCity'
           autoComplete='off'
-          placeholder='London'
-          defaultValue={weather.city}
         />
       </FieldWrapper>
 
-      <FieldWrapper>
+      <FieldWrapper isSearchOpen>
         <FieldTitle>
           Country:
           <ErrorMessage error={weather.error.country}>&nbsp;{weather.error.country}</ErrorMessage>
@@ -38,8 +40,6 @@ const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
           type='text'
           name='inputCountry'
           autoComplete='off'
-          placeholder='UK'
-          defaultValue={weather.country}
         />
       </FieldWrapper>
 
@@ -49,19 +49,20 @@ const TopBar = ({ weather, isLoading, updateWeatherAsync }) => (
         Get weather
       </Button>
     </SearchForm>
-);
+  );
+};
 
-TopBar.propTypes = {
+SearchBar.propTypes = {
   weather: PropTypes.shape({
     city: PropTypes.string,
     country: PropTypes.string,
-    date: PropTypes.number,
+    date: PropTypes.string,
     sunrise: PropTypes.number,
     sunset: PropTypes.number,
     icon: PropTypes.string,
-    temp: PropTypes.number,
-    tempMin: PropTypes.number,
-    tempMax: PropTypes.number,
+    temp: PropTypes.string,
+    tempMin: PropTypes.string,
+    tempMax: PropTypes.string,
     description: PropTypes.string,
     error: PropTypes.oneOfType([
       PropTypes.bool,
@@ -72,4 +73,4 @@ TopBar.propTypes = {
   updateWeatherAsync: PropTypes.func.isRequired
 };
 
-export default TopBar;
+export default SearchBar;
