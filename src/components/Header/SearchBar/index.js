@@ -2,53 +2,48 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  SearchForm,
-  FieldWrapper,
-  FieldTitle,
-  ErrorMessage,
-  FieldInput,
-  Button
+  TestDiv, SearchForm, Wrapper, TextField, ErrorMessage, FieldInput, OpenSearch, Button
 } from './units';
 
 const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(true);
+  const [isSearchClosed, setIsSearchClosed] = useState(true);
 
-  console.log('isSearchOpen', isSearchOpen)
+  const handleOnClick = () => (
+    isSearchClosed ? setIsSearchClosed(() => false) : setIsSearchClosed(() => true)
+  );
+
+  console.log('isSearchClosed', isSearchClosed);
   return (
-    <SearchForm onSubmit={updateWeatherAsync}>
+    <div>
+      {/* <SearchForm isSearchClosed={isSearchClosed} onSubmit={updateWeatherAsync}>
+        <Wrapper>
+          <TextField>
+            City:
+            <ErrorMessage error={weather.error.city}>&nbsp;{weather.error.city}</ErrorMessage>
+          </TextField>
 
-      <FieldWrapper isSearchOpen>
-        <FieldTitle>
-          City:
-          <ErrorMessage error={weather.error.city}>&nbsp;{weather.error.city}</ErrorMessage>
-        </FieldTitle>
+          <FieldInput type='text' name='inputCity' autoComplete='off'/>
+        </Wrapper>
 
-        <FieldInput
-          type='text'
-          name='inputCity'
-          autoComplete='off'
-        />
-      </FieldWrapper>
+        <Wrapper>
+          <TextField>
+            Country:
+            <ErrorMessage error={weather.error.country}>&nbsp;{weather.error.country}</ErrorMessage>
+          </TextField>
 
-      <FieldWrapper isSearchOpen>
-        <FieldTitle>
-          Country:
-          <ErrorMessage error={weather.error.country}>&nbsp;{weather.error.country}</ErrorMessage>
-        </FieldTitle>
+          <FieldInput type='text' name='inputCountry' autoComplete='off'/>
+        </Wrapper>
 
-        <FieldInput
-          type='text'
-          name='inputCountry'
-          autoComplete='off'
-        />
-      </FieldWrapper>
+        <Button type='submit' disabled={isLoading}>
+          Get weather
+        </Button>
+      </SearchForm> */}
+      <TestDiv isSearchClosed={isSearchClosed}/>
 
-      <Button
-        disabled={isLoading}
-      >
-        Get weather
-      </Button>
-    </SearchForm>
+      <OpenSearch type='button' isSearchClosed={isSearchClosed} onClick={handleOnClick}>
+        Get Search
+      </OpenSearch>
+    </div>
   );
 };
 

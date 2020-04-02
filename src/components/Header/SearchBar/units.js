@@ -2,20 +2,42 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
 const SearchForm = styled.form`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const FieldWrapper = styled.div`
-  ${({ isSearchOpen }) => css`
-    display: ${isSearchOpen ? 'flex' : 'none'};
-    flex-direction: column;
-    width: 33%;
+  ${({ isSearchClosed }) => css`
+    visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: green;
+    width: 100%;
+    transition: visibility 0.2s ease-in-out;
   `}
 `;
 
-const FieldTitle = styled.span`
+const TestDiv = styled.form`
+  ${({ isSearchClosed }) => css`
+    visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
+    opacity: ${!isSearchClosed ? '1' : '0'};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: green;
+    width: ${!isSearchClosed ? '300px' : '0px'};
+    padding: 5% 2%;
+    height: 45.09px;
+    background: green;
+    transition: width 1s cubic-bezier(0, 0, 1, 1) 500ms;
+  `}
+`;
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+`;
+
+const TextField = styled.span`
   font-size: 0.8rem;
   color: #676c6d;
   margin-bottom: 5px;
@@ -26,7 +48,6 @@ const ErrorMessage = styled.span((props) => ({
   fontSize: '0.8rem',
   color: 'darkred'
 }));
-
 
 const FieldInput = styled.input`
   display: flex;
@@ -52,11 +73,34 @@ const Button = styled.button((props) => ({
   cursor: 'pointer'
 }));
 
+const OpenSearch = styled.button`
+  ${({ isSearchClosed }) => css`
+    position: absolute;
+    top: 33px;
+    right: 16px;
+    z-index: 2;
+    visibility: ${isSearchClosed ? 'visible' : 'hidden'};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background: #6ccbcd;
+    cursor: pointer;
+    color: white;
+    border: none;
+    outline: none;
+    height: 45.09px;
+    transition: visibility 0.3s ease-in-out;
+  `}
+`;
+
 export {
   SearchForm,
-  FieldWrapper,
-  FieldTitle,
+  Wrapper,
+  TextField,
   ErrorMessage,
   FieldInput,
-  Button
+  OpenSearch,
+  Button,
+  TestDiv
 };

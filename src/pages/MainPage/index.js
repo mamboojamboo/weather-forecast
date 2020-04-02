@@ -14,7 +14,7 @@ const MainPage = () => {
 
   useEffect(() => {
     getWeatherAsync();
-  }, []);
+  }, [getWeatherAsync]);
 
   return (
     <MainPageWrapper>
