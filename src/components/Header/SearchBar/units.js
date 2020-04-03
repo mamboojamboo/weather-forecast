@@ -2,17 +2,35 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
 const SearchForm = styled.form`
-  ${({ isSearchClosed }) => css`
-    visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background: green;
-    width: 100%;
-    transition: visibility 0.2s ease-in-out;
-  `}
-`;
+${({ isSearchClosed }) => css`
+  visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
+  opacity: ${!isSearchClosed ? '1' : '0'};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: green;
+  width: ${!isSearchClosed ? '300px' : '0px'};
+  padding: 5% 2%;
+  height: 45.09px;
+  background: green;
+  transition: width 1s cubic-bezier(0, 0, 1, 1) 500ms;
+`}
+
+
+
+// `
+//   ${({ isSearchClosed }) => css`
+//     visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     align-items: center;
+//     background: green;
+//     width: 100%;
+//     transition: visibility 0.2s ease-in-out;
+//   `}
+// `;
 
 const TestDiv = styled.form`
   ${({ isSearchClosed }) => css`
@@ -79,7 +97,7 @@ const OpenSearch = styled.button`
     top: 33px;
     right: 16px;
     z-index: 2;
-    visibility: ${isSearchClosed ? 'visible' : 'hidden'};
+    // visibility: ${isSearchClosed ? 'visible' : 'hidden'};
     display: flex;
     justify-content: center;
     align-items: center;

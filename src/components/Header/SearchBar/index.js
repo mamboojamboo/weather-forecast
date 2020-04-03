@@ -15,7 +15,7 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
   console.log('isSearchClosed', isSearchClosed);
   return (
     <div>
-      {/* <SearchForm isSearchClosed={isSearchClosed} onSubmit={updateWeatherAsync}>
+      <SearchForm isSearchClosed={isSearchClosed} onSubmit={updateWeatherAsync}>
         <Wrapper>
           <TextField>
             City:
@@ -37,8 +37,8 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
         <Button type='submit' disabled={isLoading}>
           Get weather
         </Button>
-      </SearchForm> */}
-      <TestDiv isSearchClosed={isSearchClosed}/>
+      </SearchForm>
+
 
       <OpenSearch type='button' isSearchClosed={isSearchClosed} onClick={handleOnClick}>
         Get Search
