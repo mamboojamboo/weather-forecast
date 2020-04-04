@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 // import { css } from '@emotion/core';
 
 const Wrapper = styled.div`
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

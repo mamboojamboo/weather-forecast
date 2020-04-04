@@ -2,49 +2,20 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
 const SearchForm = styled.form`
-${({ isSearchClosed }) => css`
-  visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
-  opacity: ${!isSearchClosed ? '1' : '0'};
+position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   background: green;
-  width: ${!isSearchClosed ? '300px' : '0px'};
-  padding: 5% 2%;
-  height: 45.09px;
-  background: green;
-  transition: width 1s cubic-bezier(0, 0, 1, 1) 500ms;
-`}
+`;
 
-
-
-// `
-//   ${({ isSearchClosed }) => css`
-//     visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//     align-items: center;
-//     background: green;
-//     width: 100%;
-//     transition: visibility 0.2s ease-in-out;
-//   `}
-// `;
-
-const TestDiv = styled.form`
-  ${({ isSearchClosed }) => css`
-    visibility: ${!isSearchClosed ? 'visible' : 'hidden'};
-    opacity: ${!isSearchClosed ? '1' : '0'};
+const DinamicWrapper = styled.div`
+  ${({ isSearchClosed, error }) => css`
+    width: ${isSearchClosed && !error ? '0px' : '300px'};
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    background: green;
-    width: ${!isSearchClosed ? '300px' : '0px'};
-    padding: 5% 2%;
-    height: 45.09px;
-    background: green;
+    background: blue;
     transition: width 1s cubic-bezier(0, 0, 1, 1) 500ms;
   `}
 `;
@@ -94,10 +65,10 @@ const Button = styled.button((props) => ({
 const OpenSearch = styled.button`
   ${({ isSearchClosed }) => css`
     position: absolute;
-    top: 33px;
-    right: 16px;
+    top:0;
+    right:0;
     z-index: 2;
-    // visibility: ${isSearchClosed ? 'visible' : 'hidden'};
+    visibility: ${isSearchClosed ? 'visible' : 'hidden'};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,11 +85,11 @@ const OpenSearch = styled.button`
 
 export {
   SearchForm,
+  DinamicWrapper,
   Wrapper,
   TextField,
   ErrorMessage,
   FieldInput,
   OpenSearch,
-  Button,
-  TestDiv
+  Button
 };

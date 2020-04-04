@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  TestDiv, SearchForm, Wrapper, TextField, ErrorMessage, FieldInput, OpenSearch, Button
+  SearchForm, DinamicWrapper, Wrapper, TextField, ErrorMessage, FieldInput, OpenSearch, Button
 } from './units';
 
 const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
@@ -14,8 +14,8 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
 
   console.log('isSearchClosed', isSearchClosed);
   return (
-    <div>
-      <SearchForm isSearchClosed={isSearchClosed} onSubmit={updateWeatherAsync}>
+    <SearchForm onSubmit={updateWeatherAsync}>
+      <DinamicWrapper isSearchClosed={isSearchClosed} error={weather.error}>
         <Wrapper>
           <TextField>
             City:
@@ -33,17 +33,16 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
 
           <FieldInput type='text' name='inputCountry' autoComplete='off'/>
         </Wrapper>
+      </DinamicWrapper>
 
-        <Button type='submit' disabled={isLoading}>
+        <Button type='submit' isSearchClosed={isSearchClosed} disabled={isLoading} onClick={handleOnClick}>
           Get weather
         </Button>
-      </SearchForm>
-
 
       <OpenSearch type='button' isSearchClosed={isSearchClosed} onClick={handleOnClick}>
-        Get Search
+        Get weather
       </OpenSearch>
-    </div>
+    </SearchForm>
   );
 };
 
