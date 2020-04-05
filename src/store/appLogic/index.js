@@ -98,9 +98,10 @@ const appLogic = kea({
       }
 
       actions.setLoading(true);
+      event.target.reset();
 
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
-      await delay(2000);
+      await delay(1000);
 
       await axios.get(`//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
         .then((res) => {

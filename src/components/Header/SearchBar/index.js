@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  SearchForm, DinamicWrapper, Wrapper, TextField, ErrorMessage, FieldInput, OpenSearch, Button
+  SearchForm,
+  DinamicWrapper,
+  Wrapper,
+  TextField,
+  ErrorMessage,
+  FieldInput,
+  SubmitButton,
+  OpenSearchButton
 } from './units';
 
 const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
@@ -12,36 +19,54 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
     isSearchClosed ? setIsSearchClosed(() => false) : setIsSearchClosed(() => true)
   );
 
-  console.log('isSearchClosed', isSearchClosed);
   return (
     <SearchForm onSubmit={updateWeatherAsync}>
       <DinamicWrapper isSearchClosed={isSearchClosed} error={weather.error}>
         <Wrapper>
           <TextField>
             City:
-            <ErrorMessage error={weather.error.city}>&nbsp;{weather.error.city}</ErrorMessage>
+            <ErrorMessage error={weather.error.city}>
+              &nbsp;{weather.error.city}
+            </ErrorMessage>
           </TextField>
 
-          <FieldInput type='text' name='inputCity' autoComplete='off'/>
+          <FieldInput
+            type='text'
+            name='inputCity'
+            autoComplete='off'
+            defaultValue=''/>
         </Wrapper>
 
         <Wrapper>
           <TextField>
             Country:
-            <ErrorMessage error={weather.error.country}>&nbsp;{weather.error.country}</ErrorMessage>
+            <ErrorMessage error={weather.error.country}>
+              &nbsp;{weather.error.country}
+            </ErrorMessage>
           </TextField>
 
-          <FieldInput type='text' name='inputCountry' autoComplete='off'/>
+          <FieldInput
+            type='text'
+            name='inputCountry'
+            autoComplete='off'
+            defaultValue=''/>
         </Wrapper>
       </DinamicWrapper>
 
-        <Button type='submit' isSearchClosed={isSearchClosed} disabled={isLoading} onClick={handleOnClick}>
-          Get weather
-        </Button>
-
-      <OpenSearch type='button' isSearchClosed={isSearchClosed} onClick={handleOnClick}>
+      <SubmitButton
+        type='submit'
+        isSearchClosed={isSearchClosed}
+        disabled={isLoading}
+        onClick={handleOnClick}>
         Get weather
-      </OpenSearch>
+      </SubmitButton>
+
+      <OpenSearchButton
+        type='button'
+        isSearchClosed={isSearchClosed}
+        onClick={handleOnClick}>
+        Get weather
+      </OpenSearchButton>
     </SearchForm>
   );
 };

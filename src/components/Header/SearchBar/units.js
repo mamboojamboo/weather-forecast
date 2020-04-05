@@ -6,7 +6,7 @@ position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: green;
+  height: 45px;
 `;
 
 const DinamicWrapper = styled.div`
@@ -15,15 +15,16 @@ const DinamicWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 100%;
     background: blue;
-    transition: width 1s cubic-bezier(0, 0, 1, 1) 500ms;
+    transition: width 0.8s cubic-bezier(0, 0, 1, 1);
   `}
 `;
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 45%;
 `;
 
 const TextField = styled.span`
@@ -32,11 +33,13 @@ const TextField = styled.span`
   margin-bottom: 5px;
 `;
 
-const ErrorMessage = styled.span((props) => ({
-  display: props.error ? 'inline' : 'none',
-  fontSize: '0.8rem',
-  color: 'darkred'
-}));
+const ErrorMessage = styled.span`
+  ${({ error }) => css`
+    display: ${error ? 'inline' : 'none'};
+    font-size: 0.8rem;
+    color: darkred;
+  `}
+`;
 
 const FieldInput = styled.input`
   display: flex;
@@ -50,19 +53,23 @@ const FieldInput = styled.input`
   text-transform: uppercase
 `;
 
-const Button = styled.button((props) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: '1.2rem',
-  border: 'none',
-  background: !props.disabled ? '#6ccbcd' : '#d19064',
-  outline: 'none',
-  color: 'white',
-  cursor: 'pointer'
-}));
+const SubmitButton = styled.button`
+  ${({ disabled }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    border: none;
+    background: ${!disabled ? '#6ccbcd' : '#d19064'};
+    outline: none;
+    color: white;
+    cursor: pointer;
+    min-width: 120px;
+    height: 100%;
+  `}
+`;
 
-const OpenSearch = styled.button`
+const OpenSearchButton = styled.button`
   ${({ isSearchClosed }) => css`
     position: absolute;
     top:0;
@@ -78,8 +85,9 @@ const OpenSearch = styled.button`
     color: white;
     border: none;
     outline: none;
-    height: 45.09px;
-    transition: visibility 0.3s ease-in-out;
+    min-width: 120px;
+    height: 100%;
+    transition: visibility 0.1s;
   `}
 `;
 
@@ -90,6 +98,6 @@ export {
   TextField,
   ErrorMessage,
   FieldInput,
-  OpenSearch,
-  Button
+  SubmitButton,
+  OpenSearchButton
 };
