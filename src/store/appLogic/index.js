@@ -59,7 +59,6 @@ const appLogic = kea({
 
       await axios.get(`//api.openweathermap.org/data/2.5/weather?q=london,uk&appid=${process.env.REACT_APP_API}`)
         .then((res) => {
-
           const answer = {
             city: res.data.name,
             country: res.data.sys.country,
@@ -103,32 +102,32 @@ const appLogic = kea({
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(1000);
 
-      await axios.get(`//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
-        .then((res) => {
-          console.log(res);
+      // await axios.get(`//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
+      //   .then((res) => {
+      //     console.log(res);
 
-          const answer = {
-            city: res.data.name,
-            country: res.data.sys.country,
-            date: formatDate(res.data.dt, res.data.timezone),
-            sunrise: res.data.sys.sunrise,
-            sunset: res.data.sys.sunset,
-            icon: getIcon(
-              res.data.weather[0].id,
-              res.data.dt,
-              res.data.sys.sunrise,
-              res.data.sys.sunset
-            ),
-            temp: tempToCelsius(res.data.main.temp),
-            tempMin: tempToCelsius(res.data.main.temp_min),
-            tempMax: tempToCelsius(res.data.main.temp_max),
-            description: res.data.weather[0].description,
-            error: false
-          };
+      //     const answer = {
+      //       city: res.data.name,
+      //       country: res.data.sys.country,
+      //       date: formatDate(res.data.dt, res.data.timezone),
+      //       sunrise: res.data.sys.sunrise,
+      //       sunset: res.data.sys.sunset,
+      //       icon: getIcon(
+      //         res.data.weather[0].id,
+      //         res.data.dt,
+      //         res.data.sys.sunrise,
+      //         res.data.sys.sunset
+      //       ),
+      //       temp: tempToCelsius(res.data.main.temp),
+      //       tempMin: tempToCelsius(res.data.main.temp_min),
+      //       tempMax: tempToCelsius(res.data.main.temp_max),
+      //       description: res.data.weather[0].description,
+      //       error: false
+      //     };
 
-          return actions.updateWeather(answer);
-        })
-        .catch((err) => err);
+      //     return actions.updateWeather(answer);
+      //   })
+      //   .catch((err) => err);
       actions.setLoading(false);
     }
 

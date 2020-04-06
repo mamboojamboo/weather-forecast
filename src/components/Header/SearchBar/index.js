@@ -6,7 +6,6 @@ import {
   DinamicWrapper,
   Wrapper,
   TextField,
-  ErrorMessage,
   FieldInput,
   SubmitButton,
   OpenSearchButton
@@ -16,18 +15,18 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
   const [isSearchClosed, setIsSearchClosed] = useState(true);
 
   const handleOnClick = () => (
-    isSearchClosed ? setIsSearchClosed(() => false) : setIsSearchClosed(() => true)
+    weather.error
+      ? isSearchClosed
+      : isSearchClosed ? setIsSearchClosed(() => false) : setIsSearchClosed(() => true)
   );
 
+  console.log(isSearchClosed);
   return (
     <SearchForm onSubmit={updateWeatherAsync}>
       <DinamicWrapper isSearchClosed={isSearchClosed} error={weather.error}>
         <Wrapper>
-          <TextField>
-            City:
-            <ErrorMessage error={weather.error.city}>
-              &nbsp;{weather.error.city}
-            </ErrorMessage>
+          <TextField error={weather.error}>
+            {!weather.error.city ? 'City:' : weather.error.city}
           </TextField>
 
           <FieldInput
@@ -38,11 +37,8 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
         </Wrapper>
 
         <Wrapper>
-          <TextField>
-            Country:
-            <ErrorMessage error={weather.error.country}>
-              &nbsp;{weather.error.country}
-            </ErrorMessage>
+          <TextField error={weather.error}>
+            {!weather.error.city ? 'Country:' : weather.error.country}
           </TextField>
 
           <FieldInput

@@ -7,16 +7,17 @@ position: relative;
   flex-direction: row;
   align-items: center;
   height: 45px;
+  justify-content: space-between;
 `;
 
 const DinamicWrapper = styled.div`
   ${({ isSearchClosed, error }) => css`
-    width: ${isSearchClosed && !error ? '0px' : '300px'};
+    width: ${isSearchClosed && !error ? '0px' : '400px'};
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     height: 100%;
-    background: blue;
     transition: width 0.8s cubic-bezier(0, 0, 1, 1);
   `}
 `;
@@ -24,21 +25,15 @@ const DinamicWrapper = styled.div`
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 45%;
+    width: 40%;
 `;
 
 const TextField = styled.span`
-  font-size: 0.8rem;
-  color: #676c6d;
-  margin-bottom: 5px;
-`;
-
-const ErrorMessage = styled.span`
   ${({ error }) => css`
-    display: ${error ? 'inline' : 'none'};
     font-size: 0.8rem;
-    color: darkred;
-  `}
+    color: ${!error ? '#676c6d' : 'darkred'};
+    margin-bottom: 5px;
+  `}  
 `;
 
 const FieldInput = styled.input`
@@ -96,7 +91,6 @@ export {
   DinamicWrapper,
   Wrapper,
   TextField,
-  ErrorMessage,
   FieldInput,
   SubmitButton,
   OpenSearchButton

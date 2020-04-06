@@ -3,8 +3,8 @@ const errorChecker = (city, country, callback) => {
     case (!city && !country):
       return callback({
         error: {
-          city: 'You need to enter city',
-          country: 'You need to enter country'
+          city: 'Please enter city',
+          country: 'Please enter country'
         }
       });
     case (!city):
