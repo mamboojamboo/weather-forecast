@@ -16,7 +16,6 @@ const MainPage = () => {
     getWeatherAsync();
   }, [getWeatherAsync]);
 
-  console.log(weather);
 
   return (
     <MainPageWrapper>

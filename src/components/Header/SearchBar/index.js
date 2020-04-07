@@ -14,18 +14,21 @@ import {
 const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
   const [isSearchClosed, setIsSearchClosed] = useState(true);
 
+  const switchSearchDisplay = () => (
+    isSearchClosed ? setIsSearchClosed(() => false) : setIsSearchClosed(() => true)
+  );
+
   const handleOnClick = () => (
     weather.error
       ? isSearchClosed
-      : isSearchClosed ? setIsSearchClosed(() => false) : setIsSearchClosed(() => true)
+      : switchSearchDisplay()
   );
 
-  console.log(isSearchClosed);
   return (
     <SearchForm onSubmit={updateWeatherAsync}>
       <DinamicWrapper isSearchClosed={isSearchClosed} error={weather.error}>
         <Wrapper>
-          <TextField error={weather.error}>
+          <TextField error={weather.error.city}>
             {!weather.error.city ? 'City:' : weather.error.city}
           </TextField>
 
@@ -37,8 +40,8 @@ const SearchBar = ({ weather, isLoading, updateWeatherAsync }) => {
         </Wrapper>
 
         <Wrapper>
-          <TextField error={weather.error}>
-            {!weather.error.city ? 'Country:' : weather.error.country}
+          <TextField error={weather.error.country}>
+            {!weather.error.country ? 'Country:' : weather.error.country}
           </TextField>
 
           <FieldInput
