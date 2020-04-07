@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import { kea } from 'kea';
 import axios from 'axios';
 
-import { errorChecker, getIcon } from './utils';
+import {
+  errorChecker, formatDate, tempToCelsius, getIcon
+} from './utils';
 
 const appLogic = kea({
   actions: () => ({
@@ -14,20 +16,26 @@ const appLogic = kea({
     weather: [{
       city: '',
       country: '',
+      date: null,
+      sunrise: null,
+      sunset: null,
       icon: '',
-      tempCelsius: null,
-      tempCelsiusMin: null,
-      tempCelsiusMax: null,
+      temp: null,
+      tempMin: null,
+      tempMax: null,
       description: '',
       error: false
     },
     PropTypes.shape({
       city: PropTypes.string,
       country: PropTypes.string,
+      date: PropTypes.string,
+      sunrise: PropTypes.number,
+      sunset: PropTypes.number,
       icon: PropTypes.string,
-      tempCelsius: PropTypes.number,
-      tempCelsiusMin: PropTypes.number,
-      tempCelsiusMax: PropTypes.number,
+      temp: PropTypes.string,
+      tempMin: PropTypes.string,
+      tempMax: PropTypes.string,
       description: PropTypes.string,
       error: PropTypes.oneOfType([
         PropTypes.bool,
@@ -43,11 +51,44 @@ const appLogic = kea({
   }),
 
   thunks: ({ actions, values }) => ({
+    getWeatherAsync: async () => {
+      actions.setLoading(true);
+
+      const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+      await delay(2000);
+
+      await axios.get(`//api.openweathermap.org/data/2.5/weather?q=london,uk&appid=${process.env.REACT_APP_API}`)
+        .then((res) => {
+          const answer = {
+            city: res.data.name,
+            country: res.data.sys.country,
+            date: formatDate(res.data.dt, res.data.timezone),
+            sunrise: res.data.sys.sunrise,
+            sunset: res.data.sys.sunset,
+            icon: getIcon(
+              res.data.weather[0].id,
+              res.data.dt,
+              res.data.sys.sunrise,
+              res.data.sys.sunset
+            ),
+            temp: tempToCelsius(res.data.main.temp),
+            tempMin: tempToCelsius(res.data.main.temp_min),
+            tempMax: tempToCelsius(res.data.main.temp_max),
+            description: res.data.weather[0].description,
+            error: false
+          };
+
+          return actions.updateWeather(answer);
+        })
+        .catch((err) => err);
+      actions.setLoading(false);
+    },
+
     updateWeatherAsync: async (event) => {
       event.preventDefault();
 
-      const city = event.target.inputCity.value;
-      const country = event.target.inputCountry.value;
+      const city = event.target.inputCity.value.toLowerCase();
+      const country = event.target.inputCountry.value.toLowerCase();
 
       errorChecker(city, country, actions.updateWeather);
 
@@ -56,33 +97,37 @@ const appLogic = kea({
       }
 
       actions.setLoading(true);
+      event.target.reset();
 
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(1000);
 
-      await axios.get(`//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
-        .then((res) => {
-          console.log(res);
+      // await axios.get(`//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`)
+      //   .then((res) => {
+      //     console.log(res);
 
-          const answer = {
-            city: res.data.name,
-            country: res.data.sys.country,
-            icon: getIcon(
-              res.data.weather[0].id,
-              res.data.dt,
-              res.data.sys.sunrise,
-              res.data.sys.sunset
-            ),
-            tempCelsius: Math.floor(res.data.main.temp - 273.15),
-            tempCelsiusMin: Math.floor(res.data.main.temp_min - 273.15),
-            tempCelsiusMax: Math.floor(res.data.main.temp_max - 273.15),
-            description: res.data.weather[0].description,
-            error: false
-          };
+      //     const answer = {
+      //       city: res.data.name,
+      //       country: res.data.sys.country,
+      //       date: formatDate(res.data.dt, res.data.timezone),
+      //       sunrise: res.data.sys.sunrise,
+      //       sunset: res.data.sys.sunset,
+      //       icon: getIcon(
+      //         res.data.weather[0].id,
+      //         res.data.dt,
+      //         res.data.sys.sunrise,
+      //         res.data.sys.sunset
+      //       ),
+      //       temp: tempToCelsius(res.data.main.temp),
+      //       tempMin: tempToCelsius(res.data.main.temp_min),
+      //       tempMax: tempToCelsius(res.data.main.temp_max),
+      //       description: res.data.weather[0].description,
+      //       error: false
+      //     };
 
-          return actions.updateWeather(answer);
-        })
-        .catch((err) => err);
+      //     return actions.updateWeather(answer);
+      //   })
+      //   .catch((err) => err);
       actions.setLoading(false);
     }
 

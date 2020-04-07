@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useValues, useActions } from 'kea';
 
 import MainPageWrapper from './units';
-import SearchBar from '../../components/SearchBar';
-import WeatherCard from '../../components/WeatherCard';
+import Header from '../../components/Header';
+import MainWidget from '../../components/MainPage';
 
 import appLogic from '../../store/appLogic';
 
+
 const MainPage = () => {
   const { weather, isLoading } = useValues(appLogic);
-  const { updateWeatherAsync } = useActions(appLogic);
+  const { getWeatherAsync, updateWeatherAsync } = useActions(appLogic);
+
+  useEffect(() => {
+    getWeatherAsync();
+  }, [getWeatherAsync]);
+
+  console.log(weather);
+
   return (
     <MainPageWrapper>
-        <SearchBar {...{ weather, isLoading, updateWeatherAsync }}/>
-        <WeatherCard {...{ weather, isLoading }} />
+      <Header {...{ weather, isLoading, updateWeatherAsync }}/>
+      <MainWidget {...{ weather, isLoading }} />
     </MainPageWrapper>
   );
 };
