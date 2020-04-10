@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
   color: #676c6d;
   padding: 2% 1%;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
   margin-top: 2%;
 `;
 

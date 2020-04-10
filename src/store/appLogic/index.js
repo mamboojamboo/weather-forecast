@@ -57,6 +57,7 @@ const appLogic = kea({
       const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(2000);
 
+
       await axios.get(`//api.openweathermap.org/data/2.5/weather?q=london,uk&appid=${process.env.REACT_APP_API}`)
         .then((res) => {
           const answer = {
@@ -79,6 +80,11 @@ const appLogic = kea({
           };
 
           return actions.updateWeather(answer);
+        });
+
+      await axios.get(`//api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=${process.env.REACT_APP_API}`)
+        .then((res) => {
+          console.log(res);
         })
         .catch((err) => err);
       actions.setLoading(false);
