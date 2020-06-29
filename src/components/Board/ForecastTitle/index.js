@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 
 import Title from './units';
 
-const Forecast = ({ title = 'Weather Forecast' }) => <Title>{title}</Title>;
+const ForecastTitle = ({ title = 'Weather Forecast' }) => (
+  <Title>{title}</Title>
+);
 
-Forecast.propTypes = {
+ForecastTitle.displayName = 'ForecastTitle';
+
+ForecastTitle.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default Forecast;
+export default ForecastTitle;

@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useValues, useActions } from 'kea';
 
 import SidePanel from '../../components/SidePanel';
-
-import { StyledWrapper } from './units';
 import Board from '../../components/Board';
+import { StyledWrapper } from './units';
+
+import appLogic from '../../store/appLogic';
 
 const MainWidget = () => {
-  const data = 'test';
+  const { weather, widgetData, isLoading } = useValues(appLogic);
+  const { getWeatherAsync, getWidgetData, updateWeatherAsync } = useActions(
+    appLogic,
+  );
+
+  useEffect(() => {
+    getWeatherAsync();
+    getWidgetData({ city: 'Moscow', country: 'RU' });
+  }, [getWeatherAsync]);
+
   return (
     <StyledWrapper>
       <SidePanel />
-      <Board />
+      <Board {...{ widgetData }} />
     </StyledWrapper>
   );
 };

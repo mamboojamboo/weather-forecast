@@ -1,23 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import 'weather-icons/css/weather-icons.css';
 
-import { StyledWrapper, Title, Numeric } from './units';
+import widgetConstructor from './utils';
 
-const Widget = ({ data = {} }) => {
-  const { title = 'Title', numeric = '15' } = data;
-  return (
-    <StyledWrapper>
-      <Title>{title}</Title>
-      <Numeric>{numeric}</Numeric>
-    </StyledWrapper>
-  );
-};
+const Widget = ({ data = {}, index = null }) => widgetConstructor(data, index);
+
+Widget.displayName = 'Widget';
 
 Widget.propTypes = {
-  data: PropTypes.shape({
-    title: PropTypes.string,
-    numeric: PropTypes.string,
-  }).isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default Widget;

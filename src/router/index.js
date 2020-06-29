@@ -12,8 +12,8 @@ export const Router = () => (
   <CaptureErrorBoundary>
     <CaptureRouteNotFound>
       <Switch>
-        <Route exact path="/" title="Main Page" component={MainPage} />
-        <Route exact path="/main" title="Main Widget" component={MainWidget} />
+        <Route exact path="/main" title="Main Page" component={MainPage} />
+        <Route exact path="/" title="Main Widget" component={MainWidget} />
         <Redirect to={{ state: { notFoundError: true } }} />
       </Switch>
     </CaptureRouteNotFound>

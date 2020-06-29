@@ -5,10 +5,10 @@ import TodayForecast from './TodayForecast';
 import WeekForecast from './WeekForecast';
 import data from './config';
 
-const Board = () => {
+const Board = ({ widgetData = [] }) => {
   return (
     <StyledWrapper>
-      <TodayForecast />
+      <TodayForecast {...{ widgetData }} />
       <WeekForecast {...{ data }} />
     </StyledWrapper>
   );
