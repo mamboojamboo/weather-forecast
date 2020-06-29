@@ -2,7 +2,13 @@ import PropTypes from 'prop-types';
 import { kea } from 'kea';
 import axios from 'axios';
 
-import { errorChecker, formatDate, tempToCelsius, getIcon } from './utils';
+import {
+  errorChecker,
+  getSunTimeUpDown,
+  getCurrentDayTime,
+  tempToCelsius,
+  getIcon,
+} from './utils';
 
 const appLogic = kea({
   actions: () => ({
@@ -47,8 +53,8 @@ const appLogic = kea({
     widgetData: [
       [
         { temp: null },
-        { description: '', icon: '' },
-        { windSpeed: null, windDegree: null },
+        { icon: '', description: '' },
+        { speed: null, deg: null },
         { humidity: null },
         { pressure: null },
         { sunrise: null, sunset: null },
@@ -58,12 +64,12 @@ const appLogic = kea({
           temp: PropTypes.string,
         }),
         PropTypes.shape({
-          description: PropTypes.string,
           icon: PropTypes.string,
+          description: PropTypes.string,
         }),
         PropTypes.shape({
-          windSpeed: PropTypes.number,
-          windDegree: PropTypes.number,
+          speed: PropTypes.number,
+          deg: PropTypes.number,
         }),
         PropTypes.shape({
           humidity: PropTypes.number,
@@ -77,7 +83,7 @@ const appLogic = kea({
         }),
       ),
       {
-        [actions.updateWidgetData]: (state, payload) => payload,
+        [actions.updateWidgetData]: (_, payload) => payload,
       },
     ],
 
@@ -96,7 +102,7 @@ const appLogic = kea({
 
       const {
         status,
-        data: { wind, weather, dt: date, sys, main } = {},
+        data: { wind, weather: [weather], dt: date, sys, main, timezone } = {},
       } = await axios({
         method: 'get',
         url: `//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`,
@@ -104,7 +110,7 @@ const appLogic = kea({
 
       if (status === 200) {
         const { speed, deg } = wind;
-        const { id, description } = weather[0];
+        const { id, description } = weather;
         const { sunrise, sunset } = sys;
         const { temp, humidity, pressure } = main;
 
@@ -114,44 +120,20 @@ const appLogic = kea({
           { speed, deg },
           { humidity },
           { pressure },
-          { sunrise, sunset },
+          {
+            sunrise: getSunTimeUpDown({ timestamp: sunrise, timezone }),
+            sunset: getSunTimeUpDown({ timestamp: sunset, timezone }),
+          },
         ]);
+
+        console.log(getCurrentDayTime({ timestamp: date, timezone }));
+
+        actions.setLoading(false);
       }
     },
 
     getWeatherAsync: async () => {
       actions.setLoading(true);
-
-      const delay = (ms) =>
-        new Promise((resolve) => window.setTimeout(resolve, ms));
-      await delay(2000);
-
-      await axios
-        .get(
-          `//api.openweathermap.org/data/2.5/weather?q=london,uk&appid=${process.env.REACT_APP_API}`,
-        )
-        .then((res) => {
-          const answer = {
-            city: res.data.name,
-            country: res.data.sys.country,
-            date: formatDate(res.data.dt, res.data.timezone),
-            sunrise: res.data.sys.sunrise,
-            sunset: res.data.sys.sunset,
-            icon: getIcon(
-              res.data.weather[0].id,
-              res.data.dt,
-              res.data.sys.sunrise,
-              res.data.sys.sunset,
-            ),
-            temp: tempToCelsius(res.data.main.temp),
-            tempMin: tempToCelsius(res.data.main.temp_min),
-            tempMax: tempToCelsius(res.data.main.temp_max),
-            description: res.data.weather[0].description,
-            error: false,
-          };
-
-          return actions.updateWeather(answer);
-        });
 
       await axios
         .get(
@@ -192,7 +174,10 @@ const appLogic = kea({
           const answer = {
             city: res.data.name,
             country: res.data.sys.country,
-            date: formatDate(res.data.dt, res.data.timezone),
+            date: getCurrentDayTime({
+              timestamp: res.data.dt,
+              timezone: res.data.timezone,
+            }),
             sunrise: res.data.sys.sunrise,
             sunset: res.data.sys.sunset,
             icon: getIcon(

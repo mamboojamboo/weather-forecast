@@ -15,8 +15,8 @@ const MainWidget = () => {
 
   useEffect(() => {
     getWeatherAsync();
-    getWidgetData({ city: 'Moscow', country: 'RU' });
-  }, [getWeatherAsync]);
+    getWidgetData({ city: 'chicago', country: 'us' });
+  }, [getWeatherAsync, getWidgetData]);
 
   return (
     <StyledWrapper>

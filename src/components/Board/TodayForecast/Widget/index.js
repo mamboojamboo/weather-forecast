@@ -3,7 +3,8 @@ import 'weather-icons/css/weather-icons.css';
 
 import widgetConstructor from './utils';
 
-const Widget = ({ data = {}, index = null }) => widgetConstructor(data, index);
+const Widget = ({ data = {}, index = null }) =>
+  widgetConstructor({ data, index });
 
 Widget.displayName = 'Widget';
 

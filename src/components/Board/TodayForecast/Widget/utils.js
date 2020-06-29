@@ -1,30 +1,38 @@
 import React from 'react';
-import { StyledWrapper, Title, Numeric } from './units';
+import {
+  StyledWrapper,
+  Title,
+  Temperature,
+  WeatherIcon,
+  Description,
+  WindSpeed,
+  Numeric,
+} from './units';
 
-const widgetConstructor = (data, index) => {
+const widgetConstructor = ({ data, index }) => {
   switch (index) {
     case 0:
       return (
         <StyledWrapper>
           <Title>Temperature</Title>
-          <Numeric>{data.temp}</Numeric>
+          <Temperature>{data.temp}</Temperature>
         </StyledWrapper>
       );
     case 1:
       return (
         <StyledWrapper>
           <Title>Weather</Title>
-          <div>
+          <WeatherIcon>
             <i className={`wi ${data.icon}`} />
-          </div>
-          <div>{data.description}</div>
+          </WeatherIcon>
+          <Description>{data.description}</Description>
         </StyledWrapper>
       );
     case 2:
       return (
         <StyledWrapper>
           <Title>Wind</Title>
-          <div>{data.speed}</div>
+          <WindSpeed>{data.speed} m/sec</WindSpeed>
           <div>{data.deg}</div>
         </StyledWrapper>
       );
@@ -45,7 +53,7 @@ const widgetConstructor = (data, index) => {
     case 5:
       return (
         <StyledWrapper>
-          <Title>Sun</Title>
+          <Title>Sunrise and Sunset</Title>
           <div>{data.sunrise}</div>
           <div>{data.sunset}</div>
         </StyledWrapper>
