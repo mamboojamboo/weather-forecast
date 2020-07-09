@@ -97,7 +97,7 @@ const appLogic = kea({
   }),
 
   thunks: ({ actions, values }) => ({
-    getWidgetData: async ({ city = 'london', country = 'uk' } = {}) => {
+    getWidgetData: async ({ city = 'moscow', country = 'ru' } = {}) => {
       actions.setLoading(true);
 
       const {
@@ -125,8 +125,6 @@ const appLogic = kea({
             sunset: getSunTimeUpDown({ timestamp: sunset, timezone }),
           },
         ]);
-
-        console.log(getCurrentDayTime({ timestamp: date, timezone }));
 
         actions.setLoading(false);
       }
