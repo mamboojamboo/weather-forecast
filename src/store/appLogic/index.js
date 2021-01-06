@@ -7,14 +7,14 @@ import {
   getSunTimeUpDown,
   getCurrentDayTime,
   tempToCelsius,
-  getIcon,
+  getIcon
 } from './utils';
 
 const appLogic = kea({
   actions: () => ({
     setLoading: (boolean) => boolean,
     updateWeather: (data) => data,
-    updateWidgetData: (data) => data,
+    updateWidgetData: (data) => data
   }),
 
   reducers: ({ actions }) => ({
@@ -30,7 +30,7 @@ const appLogic = kea({
         tempMin: null,
         tempMax: null,
         description: '',
-        error: false,
+        error: false
       },
       PropTypes.shape({
         city: PropTypes.string,
@@ -43,11 +43,11 @@ const appLogic = kea({
         tempMin: PropTypes.string,
         tempMax: PropTypes.string,
         description: PropTypes.string,
-        error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+        error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
       }),
       {
-        [actions.updateWeather]: (state, payload) => ({ ...state, ...payload }),
-      },
+        [actions.updateWeather]: (state, payload) => ({ ...state, ...payload })
+      }
     ],
 
     widgetData: [
@@ -57,43 +57,43 @@ const appLogic = kea({
         { speed: null, deg: null },
         { humidity: null },
         { pressure: null },
-        { sunrise: null, sunset: null },
+        { sunrise: null, sunset: null }
       ],
       PropTypes.arrayOf(
         PropTypes.shape({
-          temp: PropTypes.string,
+          temp: PropTypes.string
         }),
         PropTypes.shape({
           icon: PropTypes.string,
-          description: PropTypes.string,
+          description: PropTypes.string
         }),
         PropTypes.shape({
           speed: PropTypes.number,
-          deg: PropTypes.number,
+          deg: PropTypes.number
         }),
         PropTypes.shape({
-          humidity: PropTypes.number,
+          humidity: PropTypes.number
         }),
         PropTypes.shape({
-          pressure: PropTypes.number,
+          pressure: PropTypes.number
         }),
         PropTypes.shape({
           sunrise: PropTypes.number,
-          sunset: PropTypes.number,
-        }),
+          sunset: PropTypes.number
+        })
       ),
       {
-        [actions.updateWidgetData]: (_, payload) => payload,
-      },
+        [actions.updateWidgetData]: (_, payload) => payload
+      }
     ],
 
     isLoading: [
       false,
       PropTypes.bool,
       {
-        [actions.setLoading]: (_, payload) => payload,
-      },
-    ],
+        [actions.setLoading]: (_, payload) => payload
+      }
+    ]
   }),
 
   thunks: ({ actions, values }) => ({
@@ -102,10 +102,12 @@ const appLogic = kea({
 
       const {
         status,
-        data: { wind, weather: [weather], dt: date, sys, main, timezone } = {},
+        data: {
+          wind, weather: [weather], dt: date, sys, main, timezone
+        } = {}
       } = await axios({
         method: 'get',
-        url: `//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`,
+        url: `//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`
       }).catch((e) => e);
 
       if (status === 200) {
@@ -122,8 +124,8 @@ const appLogic = kea({
           { pressure },
           {
             sunrise: getSunTimeUpDown({ timestamp: sunrise, timezone }),
-            sunset: getSunTimeUpDown({ timestamp: sunset, timezone }),
-          },
+            sunset: getSunTimeUpDown({ timestamp: sunset, timezone })
+          }
         ]);
 
         actions.setLoading(false);
@@ -135,7 +137,7 @@ const appLogic = kea({
 
       await axios
         .get(
-          `//api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=${process.env.REACT_APP_API}`,
+          `//api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=${process.env.REACT_APP_API}`
         )
         .then((res) => {
           console.log('res in forecast method: ', res);
@@ -160,13 +162,12 @@ const appLogic = kea({
       actions.setLoading(true);
       event.target.reset();
 
-      const delay = (ms) =>
-        new Promise((resolve) => window.setTimeout(resolve, ms));
+      const delay = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
       await delay(1000);
 
       await axios
         .get(
-          `//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`,
+          `//api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_API}`
         )
         .then((res) => {
           const answer = {
@@ -174,7 +175,7 @@ const appLogic = kea({
             country: res.data.sys.country,
             date: getCurrentDayTime({
               timestamp: res.data.dt,
-              timezone: res.data.timezone,
+              timezone: res.data.timezone
             }),
             sunrise: res.data.sys.sunrise,
             sunset: res.data.sys.sunset,
@@ -182,21 +183,21 @@ const appLogic = kea({
               res.data.weather[0].id,
               res.data.dt,
               res.data.sys.sunrise,
-              res.data.sys.sunset,
+              res.data.sys.sunset
             ),
             temp: tempToCelsius(res.data.main.temp),
             tempMin: tempToCelsius(res.data.main.temp_min),
             tempMax: tempToCelsius(res.data.main.temp_max),
             description: res.data.weather[0].description,
-            error: false,
+            error: false
           };
 
           return actions.updateWeather(answer);
         })
         .catch((err) => err);
       actions.setLoading(false);
-    },
-  }),
+    }
+  })
 });
 
 export default appLogic;
