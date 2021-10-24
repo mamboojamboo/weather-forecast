@@ -8,14 +8,14 @@ import { history } from '../store/initialStore';
 import MainPage from '../pages/MainPage';
 
 export const Router = () => (
-    <CaptureErrorBoundary>
-      <CaptureRouteNotFound>
-        <Switch>
-          <Route exact path='/' title='Main Page' component={MainPage} />
-          <Redirect to={{ state: { notFoundError: true } }} />
-        </Switch>
-      </CaptureRouteNotFound>
-    </CaptureErrorBoundary>
+  <CaptureErrorBoundary>
+    <CaptureRouteNotFound>
+      <Switch>
+        <Route exact path="/" title="Main Page" component={MainPage} />
+        <Redirect to={{ state: { notFoundError: true } }} />
+      </Switch>
+    </CaptureRouteNotFound>
+  </CaptureErrorBoundary>
 );
 
 class MainRouter extends React.Component {

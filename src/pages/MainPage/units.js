@@ -1,14 +1,29 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
-
-const MainPageWrapper = styled.div`
+const Wrapper = styled.div`
+  position: relative;
+  width: 30%;
   display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  box-sizing: border-box;
-  background: #f7f7f7;
-  padding: 5% 5%;
+  padding: 2% 1%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-top: 2%;
 `;
 
-export default MainPageWrapper;
+const Widget = styled.div`
+  ${({ isLoading }) => css`
+    display: ${!isLoading ? 'flex' : 'none'};
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #676c6d;
+  `}
+`;
+
+export const StyledWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  background-color: #eeeef0;
+  position: relative;
+`;
