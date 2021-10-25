@@ -1,0 +1,1 @@
+export { BoardInfoContainer } from './containers'
