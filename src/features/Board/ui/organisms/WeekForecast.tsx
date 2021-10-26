@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import { ForecastTitle } from '../atoms/ForecastTitle';
 import { Day } from '../molecules/Day';
 
+import { INTL } from '../../constants/intl';
+
 import { weekForecastMockData } from '../../constants/mockData';
 
 
 export const WeekForecast = () => {
   return (
     <StyledWrapper>
-      <ForecastTitle title={'Week Forecast'} />
+      <ForecastTitle title={INTL.TITLES.WEEK_FORECAST} />
       <DaysWrapper>
         {weekForecastMockData.map((data, index) => (
           <Day

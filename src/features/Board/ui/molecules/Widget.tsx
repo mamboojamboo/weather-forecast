@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 
 // import 'weather-icons/css/weather-icons.css';
+import { INTL } from '../../constants/intl';
 import { COLORS } from '../../../../constants/colors';
 
 type TWidgetProps = {
@@ -24,14 +25,14 @@ export const Widget = ({ data, index }: TWidgetProps) => {
     case 0:
       return (
         <StyledWrapper>
-          <Title>Temperature</Title>
+          <Title>{INTL.WIDGETS.TITLES.TEMPERATURE}</Title>
           <Temperature>{data.temp}</Temperature>
         </StyledWrapper>
       );
     case 1:
       return (
         <StyledWrapper>
-          <Title>Weather</Title>
+          <Title>{INTL.WIDGETS.TITLES.WEATHER}</Title>
           <WeatherIcon>
             <i className={`wi ${data.icon}`} />
           </WeatherIcon>
@@ -41,7 +42,7 @@ export const Widget = ({ data, index }: TWidgetProps) => {
     case 2:
       return (
         <StyledWrapper>
-          <Title>Wind</Title>
+          <Title>{INTL.WIDGETS.TITLES.WIND}</Title>
           <WindSpeed>{data.speed} m/sec</WindSpeed>
           <div>{data.deg}</div>
         </StyledWrapper>
@@ -49,21 +50,21 @@ export const Widget = ({ data, index }: TWidgetProps) => {
     case 3:
       return (
         <StyledWrapper>
-          <Title>Humidity</Title>
+          <Title>{INTL.WIDGETS.TITLES.HUMIDITY}</Title>
           <div>{data.humidity}</div>
         </StyledWrapper>
       );
     case 4:
       return (
         <StyledWrapper>
-          <Title>Pressure</Title>
+          <Title>{INTL.WIDGETS.TITLES.PRESSURE}</Title>
           <div>{data.pressure}</div>
         </StyledWrapper>
       );
     case 5:
       return (
         <StyledWrapper>
-          <Title>Sunrise and Sunset</Title>
+          <Title>{INTL.WIDGETS.TITLES.SUNRISE_AND_SUNSET}</Title>
           <div>{data.sunrise}</div>
           <div>{data.sunset}</div>
         </StyledWrapper>
