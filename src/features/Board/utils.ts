@@ -9,7 +9,7 @@ export const getIcon = (rangeId: number, now: number, sunrise: number, sunset: n
   } else if ([210, 211, 212, 221].includes(rangeId)) {
     return isDay ? 'wi wi-day-lightning' : 'wi wi-night-alt-lightning';
   } else if ([300, 301, 321, 500].includes(rangeId)) {
-    return isDay ? 'wi wi-day-sprinkle' : 'wiwi-night-alt-sprinkle';
+    return isDay ? 'wi wi-day-sprinkle' : 'wi wi-night-alt-sprinkle';
   } else if ([302, 310, 311, 312, 313, 314, 501, 502, 503, 504].includes(rangeId)) {
     return isDay ? 'wi wi-day-rain' : 'wi wi-night-alt-rain';
   } else if ([511, 611, 612, 615, 616, 620].includes(rangeId)) {
