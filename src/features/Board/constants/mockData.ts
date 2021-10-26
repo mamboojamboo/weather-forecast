@@ -1,4 +1,10 @@
-export const weekForecastMockData = [
+type TWeekForecastMockData = {
+  day: string,
+  icon: null,
+  temperature: string
+}[];
+
+export const weekForecastMockData: TWeekForecastMockData = [
   {
     day: 'Monday',
     icon: null,
@@ -32,14 +38,24 @@ export const weekForecastMockData = [
   {
     day: 'Sunday',
     icon: null,
+    temperature: '16',
   },
 ];
 
-export const todayForecastMockData = [
-  { temp: null },
-  { icon: '', description: '' },
-  { speed: null, deg: null },
-  { humidity: null },
-  { pressure: null },
-  { sunrise: null, sunset: null }
+export type TTodayForecastMockData = [
+  { temp: number },
+  { icon: string, description: string },
+  { speed: number, deg: number },
+  { humidity: number },
+  { pressure: number },
+  { sunrise: number, sunset: number },
+];
+
+export const todayForecastMockData: TTodayForecastMockData = [
+  { temp: 13 },
+  { icon: 'windy', description: 'windy' },
+  { speed: 12, deg: 15 },
+  { humidity: 1 },
+  { pressure: 12 },
+  { sunrise: 12, sunset: 19 }
 ];

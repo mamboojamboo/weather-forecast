@@ -4,19 +4,21 @@ import styled from 'styled-components';
 import { ForecastTitle } from '../atoms/ForecastTitle';
 import { Day } from '../atoms/Day';
 
-type TWeekForecastMockData = {
-  day: string,
-  icon: number,
-  temperature: string,
-}[];
+import { weekForecastMockData } from '../../constants/mockData';
 
-export const WeekForecast = (data: TWeekForecastMockData) => {
+
+export const WeekForecast = () => {
   return (
     <StyledWrapper>
       <ForecastTitle title={'Week Forecast'} />
       <DaysWrapper>
-        {data.map((data, index) => (
-          <Day key={index} {...{ data }} />
+        {weekForecastMockData.map((data, index) => (
+          <Day
+            key={index}
+            day={data.day}
+            icon={data.icon}
+            temperature={data.temperature}
+          />
         ))}
       </DaysWrapper>
     </StyledWrapper>

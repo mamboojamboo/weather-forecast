@@ -1,14 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import 'weather-icons/css/weather-icons.css';
+// import 'weather-icons/css/weather-icons.css';
 
-export const Widget = ({ data = {}, index = 0 }) => {
+type TWidgetProps = {
+  data: {
+    temp?: number;
+    icon?: string;
+    description?: string;
+    speed?: number;
+    deg?: number;
+    humidity?: number;
+    pressure?: number;
+    sunrise?: number;
+    sunset?: number;
+  };
+  index: number;
+}
+
+export const Widget = ({ data, index }: TWidgetProps) => {
   switch (index) {
     case 0:
       return (
         <StyledWrapper>
           <Title>Temperature</Title>
-          <Temperature>{data?.temp}</Temperature>
+          <Temperature>{data.temp}</Temperature>
         </StyledWrapper>
       );
     case 1:

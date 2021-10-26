@@ -1,28 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ForecastTitle } from '../atoms/ForecastTitle';
-import { Widget } from '../molecules/Widget';
+import { ForecastTitle } from '../ui/atoms/ForecastTitle';
+import { Widget } from '../ui/molecules/Widget';
 
-type TWidgetData = [
-  temp: number,
-  icon: string,
-  description: string,
-  speed: number,
-  deg: number,
-  humidity: number,
-  pressure: number,
-  sunrise: number,
-  sunset: number
-]
+import { todayForecastMockData } from '../constants/mockData';
 
-export const TodayForecast = (data: TWidgetData) => {
+export const TodayForecast = () => {
   return (
     <StyledWrapper>
       <ForecastTitle title={'Today Forecast'} />
       <WidgetsWrapper>
-        {data.map((data, index) => (
-          <Widget key={index} {...{ data, index }} />
+        {todayForecastMockData.map((data, index) => (
+          <Widget key={index} data={data} index={index} />
         ))}
       </WidgetsWrapper>
     </StyledWrapper>

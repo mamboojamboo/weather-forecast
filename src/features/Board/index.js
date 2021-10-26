@@ -1,1 +1,1 @@
-export { BoardInfoContainer } from './containers'
+export { BoardInfoContainer } from './containers/BoardInfoContainer'

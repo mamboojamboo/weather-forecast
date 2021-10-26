@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { TodayForecast } from '../ui/organisms/TodayForecast';
+import { TodayForecast } from './TodayForecast';
 import { WeekForecast } from '../ui/organisms/WeekForecast';
-import { todayForecastMockData, weekForecastMockData } from '../constants/mockData';
 
-export const Board = () => {
+export const BoardInfoContainer = () => {
   return (
     <StyledWrapper>
-      <TodayForecast data={todayForecastMockData} />
-      <WeekForecast data={weekForecastMockData} />
+      <TodayForecast />
+      <WeekForecast />
     </StyledWrapper>
   );
 };

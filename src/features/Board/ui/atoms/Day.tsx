@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 type TDay = {
   day: string,
-  icon: string,
+  icon: null,
   temperature: string
 }
 
-export const Day = (data: TDay) => {
-  const { day = 'Monday', icon, temperature = '12' } = data;
+export const Day = ({ day, icon, temperature }: TDay) => {
   return (
     <StyledWrapper>
       <Title>{day}</Title>
