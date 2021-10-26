@@ -1,1 +1,1 @@
-export { BoardInfoContainer } from './containers/BoardInfoContainer'
+export { BoardInfoContainer } from './ui/templates/BoardInfoContainer'

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ForecastTitle } from '../ui/atoms/ForecastTitle';
-import { Widget } from '../ui/molecules/Widget';
+import { ForecastTitle } from '../atoms/ForecastTitle';
+import { Widget } from '../molecules/Widget';
 
-import { todayForecastMockData } from '../constants/mockData';
+import { todayForecastMockData } from '../../constants/mockData';
 
 export const TodayForecast = () => {
   return (

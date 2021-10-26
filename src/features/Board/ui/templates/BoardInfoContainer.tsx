@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { TodayForecast } from './TodayForecast';
-import { WeekForecast } from '../ui/organisms/WeekForecast';
+import { TodayForecast } from '../organisms/TodayForecast';
+import { WeekForecast } from '../organisms/WeekForecast';
 
 export const BoardInfoContainer = () => {
   return (

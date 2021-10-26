@@ -5,8 +5,6 @@ export const ForecastTitle = ({ title = 'Weather Forecast' }) => (
   <Title>{title}</Title>
 );
 
-ForecastTitle.displayName = 'ForecastTitle';
-
 const Title = styled.span`
   margin-bottom: 24px;
   font-size: 1rem;
