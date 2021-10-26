@@ -1,7 +1,7 @@
-const tempToCelsius = (temperature: number) =>
+export const tempToCelsius = (temperature: number) =>
   `${Math.floor(temperature - 273.15)}\xB0`;
 
-const getIcon = (rangeId: number, now: number, sunrise: number, sunset: number) => {
+export const getIcon = (rangeId: number, now: number, sunrise: number, sunset: number) => {
   const isDay = sunrise < now && now < sunset;
 
   if ([200, 201, 202, 230, 231, 232].includes(rangeId)) {
@@ -53,7 +53,15 @@ const getIcon = (rangeId: number, now: number, sunrise: number, sunset: number) 
   }
 };
 
-export {
-  tempToCelsius,
-  getIcon,
+const formatTime = (time: number) => time < 10 ? `0${time}` : time;
+
+export const getSunTimeUpDown = (timestamp: number, timezone: number) => {
+  const timezoneShift = timezone * 1000;
+  const apiDate = new Date(timestamp * 1000 + timezoneShift);
+  const hours = formatTime(apiDate.getUTCHours());
+  const minutes = formatTime(apiDate.getUTCMinutes());
+
+  return `${hours}:${minutes}`;
 };
+
+export const formatWindSpeed = (speed: number) => `${speed} m/sec`;

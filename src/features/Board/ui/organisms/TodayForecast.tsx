@@ -31,7 +31,7 @@ export const TodayForecast = () => {
 
         <StyledWrapper>
           <Title>{INTL.WIDGETS.TITLES.WIND}</Title>
-          <WindSpeed>{weatherStore.speed} m/sec</WindSpeed>
+          <WindSpeed>{weatherStore.speed}</WindSpeed>
           <div>{weatherStore.deg}</div>
         </StyledWrapper>
 
