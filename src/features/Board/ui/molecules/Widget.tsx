@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-
-
 import 'weather-icons/css/weather-icons.css';
-import { INTL } from '../../constants/intl';
+
 import { COLORS } from '../../../../constants/colors';
+
+import { INTL } from '../../constants/intl';
+
 
 type TWidgetProps = {
   data: {

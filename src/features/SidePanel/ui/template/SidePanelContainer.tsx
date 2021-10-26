@@ -1,16 +1,18 @@
 import styled from 'styled-components';
-import { COLORS } from '../../constants/colors';
 
-import Search from './Search';
-import PointInfo from './PointInfo';
+import { COLORS } from '../../../../constants/colors';
 
-export const SidePanel = () => {
+import { Search } from '../molecules/Search';
+import { LocationInfo } from '../atom/LocationInfo';
+
+
+export const SidePanelContainer = () => {
   const data = 'SidePanel';
   return (
     <StyledWrapper>
       <Wrapper>
         <Search />
-        <PointInfo />
+        <LocationInfo />
       </Wrapper>
       {data}
     </StyledWrapper>

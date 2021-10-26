@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
-import { SidePanel } from '../../features/SidePanel';
+import { SidePanelContainer } from '../../features/SidePanel';
 import { BoardInfoContainer } from '../../features/Board';
 
 import { COLORS } from '../../constants/colors';
 
+
 export const MainPage = () => (
   <StyledWrapper>
-    <SidePanel />
+    <SidePanelContainer />
     <BoardInfoContainer />
   </StyledWrapper>
 );
