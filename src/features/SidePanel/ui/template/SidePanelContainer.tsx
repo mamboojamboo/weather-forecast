@@ -7,14 +7,14 @@ import { LocationInfo } from '../atom/LocationInfo';
 
 
 export const SidePanelContainer = () => {
-  const data = 'SidePanel';
+  const appVersion = `Version: ${process.env.REACT_APP_VERSION}`;
   return (
     <StyledWrapper>
       <Wrapper>
         <Search />
         <LocationInfo />
       </Wrapper>
-      {data}
+      {appVersion}
     </StyledWrapper>
   );
 };
