@@ -1,14 +1,19 @@
-import React from 'react';
+import styled from 'styled-components';
 
-import { StyledWrapper } from './units';
-import SidePanel from '../../features/SidePanel/SidePanel';
+import { SidePanel } from '../../features/SidePanel';
 import { BoardInfoContainer } from '../../features/Board';
 
-const MainPage = () => (
+import { COLORS } from '../../constants/colors';
+
+export const MainPage = () => (
   <StyledWrapper>
     <SidePanel />
     <BoardInfoContainer />
   </StyledWrapper>
 );
 
-export default MainPage;
+const StyledWrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  background-color: ${COLORS.GREY};
+`;
