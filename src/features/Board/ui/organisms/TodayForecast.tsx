@@ -24,7 +24,7 @@ export const TodayForecast = () => {
         <StyledWrapper>
           <Title>{INTL.WIDGETS.TITLES.WEATHER}</Title>
           <WeatherIcon>
-            <i className={`wi ${weatherStore.icon}`} />
+            <i className={weatherStore.icon} />
           </WeatherIcon>
           <Description>{weatherStore.description}</Description>
         </StyledWrapper>
