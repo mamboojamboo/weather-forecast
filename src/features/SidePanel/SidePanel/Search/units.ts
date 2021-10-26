@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
+import { COLORS } from '../../../../constants/colors';
+
 export const StyledWrapper = styled.div`
   display: flex;
-  background-color: #eeeef0;
+  margin-bottom: 24px;
   padding: 1.383% 5%;
   border-radius: 10px;
-  margin-bottom: 24px;
+  background-color: ${COLORS.GREY};
 `;

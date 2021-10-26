@@ -8,7 +8,7 @@ export const ForecastTitle = ({ title = 'Weather Forecast' }) => (
 ForecastTitle.displayName = 'ForecastTitle';
 
 const Title = styled.span`
+  margin-bottom: 24px;
   font-size: 16px;
   line-height: 27px;
-  margin-bottom: 24px;
 `;

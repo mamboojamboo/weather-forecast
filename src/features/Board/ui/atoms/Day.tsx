@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { COLORS } from '../../../../constants/colors';
+
 type TDay = {
   day: string,
   icon: null,
@@ -18,16 +20,15 @@ export const Day = ({ day, icon, temperature }: TDay) => {
 };
 
 const StyledWrapper = styled.div`
+  width: 12%;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 1% 2%;
-  position: relative;
-  background-color: white;
   border-radius: 10px;
-  width: 12%;
-  height: 200px;
+  background-color: ${COLORS.WHITE};
 `;
 
 const Title = styled.span`
@@ -38,7 +39,7 @@ const Title = styled.span`
 const Icon = styled.div`
   width: 50px;
   height: 50px;
-  background-color: grey;
+  background-color: ${COLORS.DARK_GREY};
   margin-bottom: 12px;
 `;
 

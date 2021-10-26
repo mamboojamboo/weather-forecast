@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
+
 // import 'weather-icons/css/weather-icons.css';
+import { COLORS } from '../../../../constants/colors';
 
 type TWidgetProps = {
   data: {
@@ -77,34 +80,33 @@ export const Widget = ({ data, index }: TWidgetProps) => {
 };
 
 const StyledWrapper = styled.div`
+  width: 32%;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 2% 2%;
-  position: relative;
-  background-color: white;
-  border-radius: 10px;
-  width: 32%;
-  height: 250px;
   margin-bottom: 24px;
+  padding: 2% 2%;
+  border-radius: 10px;
+  background-color: ${COLORS.WHITE};
 `;
 
 const Title = styled.span`
-  display: flex;
   width: 100%;
+  display: flex;
   margin-bottom: 12px;
-  color: grey;
+  color: ${COLORS.DARK_GREY};
 `;
 
 const Temperature = styled.span`
   font-size: 10rem;
-  color: grey;
+  color: ${COLORS.DARK_GREY};
 `;
 
 const WeatherIcon = styled.span`
   font-size: 5rem;
-  color: grey;
+  color: ${COLORS.DARK_GREY};
 `;
 
 const Description = styled.span`

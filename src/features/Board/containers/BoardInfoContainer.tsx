@@ -14,10 +14,9 @@ export const BoardInfoContainer = () => {
 };
 
 const StyledWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2% 2%;
-  position: relative;
-  width: 100%;
 `;

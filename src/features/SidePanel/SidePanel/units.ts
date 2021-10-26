@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { COLORS } from '../../../constants/colors';
 
 const StyledWrapper = styled.div`
+  width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: white;
   padding: 2% 2%;
-  width: 30%;
+  background-color: ${COLORS.WHITE};
 `;
 
 const Wrapper = styled.div`
