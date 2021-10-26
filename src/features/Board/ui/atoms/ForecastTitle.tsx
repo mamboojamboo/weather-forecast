@@ -9,6 +9,6 @@ ForecastTitle.displayName = 'ForecastTitle';
 
 const Title = styled.span`
   margin-bottom: 24px;
-  font-size: 16px;
-  line-height: 27px;
+  font-size: 1rem;
+  line-height: 1.6875rem;
 `;

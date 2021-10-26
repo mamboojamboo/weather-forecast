@@ -31,17 +31,15 @@ const StyledWrapper = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 14px;
-  margin-bottom: 12px;
+  font-size: 0.875rem;
 `;
 
 const Icon = styled.div`
   width: 50px;
   height: 50px;
   background-color: ${COLORS.DARK_GREY};
-  margin-bottom: 12px;
 `;
 
 const Temperature = styled.span`
-  font-size: 14px;
+  font-size: 0.875rem;
 `;

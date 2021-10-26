@@ -94,7 +94,6 @@ const StyledWrapper = styled.div`
 const Title = styled.span`
   width: 100%;
   display: flex;
-  margin-bottom: 12px;
   color: ${COLORS.DARK_GREY};
 `;
 
@@ -109,7 +108,7 @@ const WeatherIcon = styled.span`
 `;
 
 const Description = styled.span`
-  font-size: 0.85rem;
+  font-size: 1rem;
 `;
 
 const WindSpeed = styled.span`
@@ -117,5 +116,5 @@ const WindSpeed = styled.span`
 `;
 
 const Numeric = styled.span`
-  font-size: 14px;
+  font-size: 1rem;
 `;
