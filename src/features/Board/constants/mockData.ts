@@ -53,7 +53,7 @@ export type TTodayForecastMockData = [
 
 export const todayForecastMockData: TTodayForecastMockData = [
   { temp: 13 },
-  { icon: 'windy', description: 'windy' },
+  { icon: 'wi-day-thunderstorm', description: 'windy' },
   { speed: 12, deg: 15 },
   { humidity: 1 },
   { pressure: 12 },
