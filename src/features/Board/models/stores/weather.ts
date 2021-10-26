@@ -27,7 +27,7 @@ export const $weatherStore = createStore({
   sunrise: '',
   sunset: ''
 })
-  .on(weatherEvent, (_, payload) => payload)
+  .on(weatherEvent, (_, payload) => payload);
 
 weatherEvent.watch(value => console.log('weatherEvent: ', value));
 $weatherStore.watch(value => console.log('$weatherStore: ', value));
