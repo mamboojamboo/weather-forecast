@@ -3,10 +3,9 @@ import { useStore } from 'effector-react';
 import 'weather-icons/css/weather-icons.css';
 
 import { COLORS } from '../../../../constants/colors';
+import { INTL } from '../../constants/intl';
 
 import { ForecastTitle } from '../atoms/ForecastTitle';
-
-import { INTL } from '../../constants/intl';
 import { $weatherStore } from '../../models/stores/weather'
 
 export const TodayForecast = () => {
@@ -54,10 +53,6 @@ export const TodayForecast = () => {
     </MainStyledWrapper>
   );
 };
-
-/* {weatherStore.map((data, index) => (
-  <Widget key={index} data={data} index={index} />
-))} */
 
 const MainStyledWrapper = styled.div`
   display: flex;
