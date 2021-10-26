@@ -1,7 +1,7 @@
-export const tempToCelsius = (temperature: number) =>
+export const formatTempToCelsius = (temperature: number) =>
   `${Math.floor(temperature - 273.15)}\xB0`;
 
-export const getIcon = (rangeId: number, now: number, sunrise: number, sunset: number) => {
+export const formatIcon = (rangeId: number, now: number, sunrise: number, sunset: number) => {
   const isDay = sunrise < now && now < sunset;
 
   if ([200, 201, 202, 230, 231, 232].includes(rangeId)) {
@@ -55,7 +55,7 @@ export const getIcon = (rangeId: number, now: number, sunrise: number, sunset: n
 
 const formatTime = (time: number) => time < 10 ? `0${time}` : time;
 
-export const getSunTimeUpDown = (timestamp: number, timezone: number) => {
+export const formatSunTimeUpDown = (timestamp: number, timezone: number) => {
   const timezoneShift = timezone * 1000;
   const apiDate = new Date(timestamp * 1000 + timezoneShift);
   const hours = formatTime(apiDate.getUTCHours());
@@ -65,3 +65,7 @@ export const getSunTimeUpDown = (timestamp: number, timezone: number) => {
 };
 
 export const formatWindSpeed = (speed: number) => `${speed} m/sec`;
+
+export const formatHumidity = (humidity: number) => `${humidity}%`;
+
+export const formatPressure = (pressure: number) => `${pressure} hPa`;

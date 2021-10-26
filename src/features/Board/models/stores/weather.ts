@@ -1,19 +1,28 @@
 import { createStore } from "effector";
-import { tempToCelsius, getIcon, getSunTimeUpDown, formatWindSpeed } from "../../utils";
+
 import { efWeatherEndPoint } from "../effects/weatherEndPoint";
+import {
+  formatTempToCelsius,
+  formatIcon,
+  formatSunTimeUpDown,
+  formatWindSpeed,
+  formatHumidity,
+  formatPressure
+} from "../../utils";
+
 
 efWeatherEndPoint({ city: 'london', country: 'uk' });
 
 const weatherEvent = efWeatherEndPoint.doneData.map((result) => ({
-  temp: tempToCelsius(result.main.temp),
-  icon: getIcon(result.weather[0].id, result.dt, result.sys.sunrise, result.sys.sunset),
+  temp: formatTempToCelsius(result.main.temp),
+  icon: formatIcon(result.weather[0].id, result.dt, result.sys.sunrise, result.sys.sunset),
   description: result.weather[0].description,
   speed: formatWindSpeed(result.wind.speed),
   deg: result.wind.deg,
-  humidity: result.main.humidity,
-  pressure: result.main.pressure,
-  sunrise: getSunTimeUpDown(result.timezone, result.sys.sunrise),
-  sunset: getSunTimeUpDown(result.timezone, result.sys.sunset),
+  humidity: formatHumidity(result.main.humidity),
+  pressure: formatPressure(result.main.pressure),
+  sunrise: formatSunTimeUpDown(result.timezone, result.sys.sunrise),
+  sunset: formatSunTimeUpDown(result.timezone, result.sys.sunset),
 }));
 
 export const $weatherStore = createStore({
@@ -22,8 +31,8 @@ export const $weatherStore = createStore({
   description: '',
   speed: '',
   deg: 0,
-  humidity: 0,
-  pressure: 0,
+  humidity: '',
+  pressure: '',
   sunrise: '',
   sunset: ''
 })
