@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import { ForecastTitle } from '../atoms/ForecastTitle';
-import { Day } from '../atoms/Day';
+import { Day } from '../molecules/Day';
 
 import { weekForecastMockData } from '../../constants/mockData';
 
